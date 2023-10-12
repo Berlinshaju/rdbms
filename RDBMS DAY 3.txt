@@ -1,0 +1,1371 @@
+Microsoft Windows [Version 10.0.19045.3516]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Administrator>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Oct 10 15:01:28 2023
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: scott
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> show user
+USER is "SCOTT"
+SQL> select length('ABCD') from dual;
+
+LENGTH('ABCD')
+--------------
+             4
+
+SQL> select length('ABCD') from emp;
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+
+14 rows selected.
+
+SQL> select length('ABCD') from emp;
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+
+14 rows selected.
+
+SQL> select upper('berlin'),lower('BERLIN') from dual;
+
+UPPER( LOWER(
+------ ------
+BERLIN berlin
+
+
+SQL> select upper('berlin'),lower('BERLIN') from dual;
+
+UPPER( LOWER(
+------ ------
+BERLIN berlin
+
+SQL> select upper('berlin'),lower('BERLIN') from dual;
+
+UPPER( LOWER(
+------ ------
+BERLIN berlin
+
+SQL> select length('ABCD') from emp;
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+
+14 rows selected.
+
+SQL> select length('ABCD') from dual;
+
+LENGTH('ABCD')
+--------------
+             4
+
+SQL> set linesize 100;
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select length('Hello World') from dual;
+
+LENGTH('HELLOWORLD')
+--------------------
+                  11
+
+
+SQL> select ename, length(ename) from emp;
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+SMITH                  5
+ALLEN                  5
+WARD                   4
+JONES                  5
+MARTIN                 6
+BLAKE                  5
+CLARK                  5
+SCOTT                  5
+KING                   4
+TURNER                 6
+ADAMS                  5
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+JAMES                  5
+FORD                   4
+MILLER                 6
+
+14 rows selected.
+
+SQL> select ename, length(ename) from emp;
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+SMITH                  5
+ALLEN                  5
+WARD                   4
+JONES                  5
+MARTIN                 6
+BLAKE                  5
+CLARK                  5
+SCOTT                  5
+KING                   4
+TURNER                 6
+ADAMS                  5
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+JAMES                  5
+FORD                   4
+MILLER                 6
+
+14 rows selected.
+
+
+
+SQL> select ename, length(ename) from emp where length(ename)<=5;
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+SMITH                  5
+ALLEN                  5
+WARD                   4
+JONES                  5
+BLAKE                  5
+CLARK                  5
+SCOTT                  5
+KING                   4
+ADAMS                  5
+JAMES                  5
+FORD                   4
+
+11 rows selected.
+
+
+SQL> select ename, length(ename) from emp where length(ename)<=5;
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+SMITH                  5
+ALLEN                  5
+WARD                   4
+JONES                  5
+BLAKE                  5
+CLARK                  5
+SCOTT                  5
+KING                   4
+ADAMS                  5
+JAMES                  5
+FORD                   4
+
+11 rows selected.
+
+SQL> select ename, length(ename) from emp where length(ename)<=5;
+
+ENAME      LENGTH(ENAME)
+---------- -------------
+SMITH                  5
+ALLEN                  5
+WARD                   4
+JONES                  5
+BLAKE                  5
+CLARK                  5
+SCOTT                  5
+KING                   4
+ADAMS                  5
+JAMES                  5
+FORD                   4
+
+11 rows selected.
+
+SQL> select length('ABCD') from emp;
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+             4
+
+LENGTH('ABCD')
+--------------
+             4
+             4
+             4
+
+14 rows selected.
+
+SQL> select upper('berlin'),lower('BERLIN') from dual;
+
+UPPER( LOWER(
+------ ------
+BERLIN berlin
+
+SQL> select upper(ename),lower(job) from emp;
+
+UPPER(ENAM LOWER(JOB
+---------- ---------
+SMITH      clerk
+ALLEN      salesman
+WARD       salesman
+JONES      manager
+MARTIN     salesman
+BLAKE      manager
+CLARK      manager
+SCOTT      analyst
+KING       president
+TURNER     salesman
+ADAMS      clerk
+
+UPPER(ENAM LOWER(JOB
+---------- ---------
+JAMES      clerk
+FORD       analyst
+MILLER     clerk
+
+14 rows selected.
+
+SQL> select ename, job from emp;
+
+ENAME      JOB
+---------- ---------
+SMITH      CLERK
+ALLEN      SALESMAN
+WARD       SALESMAN
+JONES      MANAGER
+MARTIN     SALESMAN
+BLAKE      MANAGER
+CLARK      MANAGER
+SCOTT      ANALYST
+KING       PRESIDENT
+TURNER     SALESMAN
+ADAMS      CLERK
+
+ENAME      JOB
+---------- ---------
+JAMES      CLERK
+FORD       ANALYST
+MILLER     CLERK
+
+14 rows selected.
+
+SQL> select rpad(ename, 20, '.'), job from emp;
+
+RPAD(ENAME,20,'.')                                                               JOB
+-------------------------------------------------------------------------------- ---------
+SMITH...............                                                             CLERK
+ALLEN...............                                                             SALESMAN
+WARD................                                                             SALESMAN
+JONES...............                                                             MANAGER
+MARTIN..............                                                             SALESMAN
+BLAKE...............                                                             MANAGER
+CLARK...............                                                             MANAGER
+SCOTT...............                                                             ANALYST
+KING................                                                             PRESIDENT
+TURNER..............                                                             SALESMAN
+ADAMS...............                                                             CLERK
+
+RPAD(ENAME,20,'.')                                                               JOB
+-------------------------------------------------------------------------------- ---------
+JAMES...............                                                             CLERK
+FORD................                                                             ANALYST
+MILLER..............                                                             CLERK
+
+14 rows selected.
+
+
+SQL> select rpad(ename, 20, '.'), lpad(job, 10,'*') from emp;
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,10,'*')
+----------------------------------------
+SMITH...............
+*****CLERK
+
+ALLEN...............
+**SALESMAN
+
+WARD................
+**SALESMAN
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,10,'*')
+----------------------------------------
+JONES...............
+***MANAGER
+
+MARTIN..............
+**SALESMAN
+
+BLAKE...............
+***MANAGER
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,10,'*')
+----------------------------------------
+CLARK...............
+***MANAGER
+
+SCOTT...............
+***ANALYST
+
+KING................
+*PRESIDENT
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,10,'*')
+----------------------------------------
+TURNER..............
+**SALESMAN
+
+ADAMS...............
+*****CLERK
+
+JAMES...............
+*****CLERK
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,10,'*')
+----------------------------------------
+FORD................
+***ANALYST
+
+MILLER..............
+*****CLERK
+
+
+14 rows selected.
+
+SQL> select rpad(ename, 20, '.'), lpad(job, 5,'*') from emp;
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,5,'*')
+--------------------
+SMITH...............
+CLERK
+
+ALLEN...............
+SALES
+
+WARD................
+SALES
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,5,'*')
+--------------------
+JONES...............
+MANAG
+
+MARTIN..............
+SALES
+
+BLAKE...............
+MANAG
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,5,'*')
+--------------------
+CLARK...............
+MANAG
+
+SCOTT...............
+ANALY
+
+KING................
+PRESI
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,5,'*')
+--------------------
+TURNER..............
+SALES
+
+ADAMS...............
+CLERK
+
+JAMES...............
+CLERK
+
+
+RPAD(ENAME,20,'.')
+--------------------------------------------------------------------------------
+LPAD(JOB,5,'*')
+--------------------
+FORD................
+ANALY
+
+MILLER..............
+CLERK
+
+
+14 rows selected.
+
+SQL> select rpad(ename, 15, '.'), lpad(job, 5,'*') from emp;
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,5,'*')
+------------------------------------------------------------ --------------------
+SMITH..........                                              CLERK
+ALLEN..........                                              SALES
+WARD...........                                              SALES
+JONES..........                                              MANAG
+MARTIN.........                                              SALES
+BLAKE..........                                              MANAG
+CLARK..........                                              MANAG
+SCOTT..........                                              ANALY
+KING...........                                              PRESI
+TURNER.........                                              SALES
+ADAMS..........                                              CLERK
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,5,'*')
+------------------------------------------------------------ --------------------
+JAMES..........                                              CLERK
+FORD...........                                              ANALY
+MILLER.........                                              CLERK
+
+14 rows selected.
+
+SQL> select rpad(ename, 15, '.'), lpad(job, 5,'*') from emp;
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,5,'*')
+------------------------------------------------------------ --------------------
+SMITH..........                                              CLERK
+ALLEN..........                                              SALES
+WARD...........                                              SALES
+JONES..........                                              MANAG
+MARTIN.........                                              SALES
+BLAKE..........                                              MANAG
+CLARK..........                                              MANAG
+SCOTT..........                                              ANALY
+KING...........                                              PRESI
+TURNER.........                                              SALES
+ADAMS..........                                              CLERK
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,5,'*')
+------------------------------------------------------------ --------------------
+JAMES..........                                              CLERK
+FORD...........                                              ANALY
+MILLER.........                                              CLERK
+
+14 rows selected.
+
+SQL> select rpad(ename, 15, '.'), lpad(job, 7,'*') from emp;
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,7,'*')
+------------------------------------------------------------ ----------------------------
+SMITH..........                                              **CLERK
+ALLEN..........                                              SALESMA
+WARD...........                                              SALESMA
+JONES..........                                              MANAGER
+MARTIN.........                                              SALESMA
+BLAKE..........                                              MANAGER
+CLARK..........                                              MANAGER
+SCOTT..........                                              ANALYST
+KING...........                                              PRESIDE
+TURNER.........                                              SALESMA
+ADAMS..........                                              **CLERK
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,7,'*')
+------------------------------------------------------------ ----------------------------
+JAMES..........                                              **CLERK
+FORD...........                                              ANALYST
+MILLER.........                                              **CLERK
+
+14 rows selected.
+
+SQL> select rpad(ename, 15, '.'), lpad(job, 9,'*') from emp;
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,9,'*')
+------------------------------------------------------------ ------------------------------------
+SMITH..........                                              ****CLERK
+ALLEN..........                                              *SALESMAN
+WARD...........                                              *SALESMAN
+JONES..........                                              **MANAGER
+MARTIN.........                                              *SALESMAN
+BLAKE..........                                              **MANAGER
+CLARK..........                                              **MANAGER
+SCOTT..........                                              **ANALYST
+KING...........                                              PRESIDENT
+TURNER.........                                              *SALESMAN
+ADAMS..........                                              ****CLERK
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,9,'*')
+------------------------------------------------------------ ------------------------------------
+JAMES..........                                              ****CLERK
+FORD...........                                              **ANALYST
+MILLER.........                                              ****CLERK
+
+14 rows selected.
+
+SQL> select rpad(ename, 15, '.') name, lpad(job, 9,'*') designation from emp;
+
+NAME                                                         DESIGNATION
+------------------------------------------------------------ ------------------------------------
+SMITH..........                                              ****CLERK
+ALLEN..........                                              *SALESMAN
+WARD...........                                              *SALESMAN
+JONES..........                                              **MANAGER
+MARTIN.........                                              *SALESMAN
+BLAKE..........                                              **MANAGER
+CLARK..........                                              **MANAGER
+SCOTT..........                                              **ANALYST
+KING...........                                              PRESIDENT
+TURNER.........                                              *SALESMAN
+ADAMS..........                                              ****CLERK
+
+NAME                                                         DESIGNATION
+------------------------------------------------------------ ------------------------------------
+JAMES..........                                              ****CLERK
+FORD...........                                              **ANALYST
+MILLER.........                                              ****CLERK
+
+14 rows selected.
+
+SQL> select rpad(ename, 15, '.'), lpad(job, 7,'*') from emp;
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,7,'*')
+------------------------------------------------------------ ----------------------------
+SMITH..........                                              **CLERK
+ALLEN..........                                              SALESMA
+WARD...........                                              SALESMA
+JONES..........                                              MANAGER
+MARTIN.........                                              SALESMA
+BLAKE..........                                              MANAGER
+CLARK..........                                              MANAGER
+SCOTT..........                                              ANALYST
+KING...........                                              PRESIDE
+TURNER.........                                              SALESMA
+ADAMS..........                                              **CLERK
+
+RPAD(ENAME,15,'.')                                           LPAD(JOB,7,'*')
+------------------------------------------------------------ ----------------------------
+JAMES..........                                              **CLERK
+FORD...........                                              ANALYST
+MILLER.........                                              **CLERK
+
+14 rows selected.
+
+SQL> select trim( 0 from '00000000000I am Iron Man000000000000') from dual;
+
+TRIM(0FROM'00
+-------------
+I am Iron Man
+
+SQL> select ltrim( 0 from '00000000000I am Iron Man000000000000',0) from dual;
+select ltrim( 0 from '00000000000I am Iron Man000000000000',0) from dual
+                *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select ltrim('00000000000I am Iron Man000000000000',0) from dual;
+
+LTRIM('00000000000IAMIRON
+-------------------------
+I am Iron Man000000000000
+
+SQL> select rtrim('00000000000I am Iron Man000000000000',0) from dual;
+
+RTRIM('00000000000IAMIRO
+------------------------
+00000000000I am Iron Man
+
+SQL> select rtrim(0 from '000000010000I am Iron Man000000000000') from dual;
+
+RTRIM('01''000000010000IAMIRONMAN0000000
+----------------------------------------
+10000I am Iron Man000000000000
+
+
+SQL> select rtrim('00000000000I am Iron Man000000000000',0) from dual;
+
+RTRIM('00000000000IAMIRO
+------------------------
+00000000000I am Iron Man
+
+SQL> select ltrim('00000000000I am Iron Man000000000000',0) from dual;
+
+LTRIM('00000000000IAMIRON
+-------------------------
+I am Iron Man000000000000
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select replace(ename,'SMITH','SMITHS') from emp;
+
+REPLACE(ENAME,'SMITH','SMITHS')
+------------------------------------------------------------
+SMITHS
+ALLEN
+WARD
+JONES
+MARTIN
+BLAKE
+CLARK
+SCOTT
+KING
+TURNER
+ADAMS
+
+REPLACE(ENAME,'SMITH','SMITHS')
+------------------------------------------------------------
+JAMES
+FORD
+MILLER
+
+14 rows selected.
+
+SQL> select substr(ename,1,2), ename from emp;
+
+SUBSTR(E ENAME
+-------- ----------
+SM       SMITH
+AL       ALLEN
+WA       WARD
+JO       JONES
+MA       MARTIN
+BL       BLAKE
+CL       CLARK
+SC       SCOTT
+KI       KING
+TU       TURNER
+AD       ADAMS
+
+SUBSTR(E ENAME
+-------- ----------
+JA       JAMES
+FO       FORD
+MI       MILLER
+
+14 rows selected.
+
+SQL> select substr(ename,3,2), ename from emp;
+
+SUBSTR(E ENAME
+-------- ----------
+IT       SMITH
+LE       ALLEN
+RD       WARD
+NE       JONES
+RT       MARTIN
+AK       BLAKE
+AR       CLARK
+OT       SCOTT
+NG       KING
+RN       TURNER
+AM       ADAMS
+
+SUBSTR(E ENAME
+-------- ----------
+ME       JAMES
+RD       FORD
+LL       MILLER
+
+14 rows selected.
+
+SQL> select substr(ename,3,3), ename from emp;
+
+SUBSTR(ENAME ENAME
+------------ ----------
+ITH          SMITH
+LEN          ALLEN
+RD           WARD
+NES          JONES
+RTI          MARTIN
+AKE          BLAKE
+ARK          CLARK
+OTT          SCOTT
+NG           KING
+RNE          TURNER
+AMS          ADAMS
+
+SUBSTR(ENAME ENAME
+------------ ----------
+MES          JAMES
+RD           FORD
+LLE          MILLER
+
+14 rows selected.
+
+SQL> select substr(ename,1,1), ename from emp;
+
+SUBS ENAME
+---- ----------
+S    SMITH
+A    ALLEN
+W    WARD
+J    JONES
+M    MARTIN
+B    BLAKE
+C    CLARK
+S    SCOTT
+K    KING
+T    TURNER
+A    ADAMS
+
+SUBS ENAME
+---- ----------
+J    JAMES
+F    FORD
+M    MILLER
+
+14 rows selected.
+
+SQL> select substr(ename,1,1), ename from emp where empno=7788;
+
+SUBS ENAME
+---- ----------
+S    SCOTT
+
+SQL> select substr(ename,1,2), ename from emp where empno=7788;
+
+SUBSTR(E ENAME
+-------- ----------
+SC       SCOTT
+
+SQL> select substr(ename,1,3), ename from emp where empno=7788;
+
+SUBSTR(ENAME ENAME
+------------ ----------
+SCO          SCOTT
+
+SQL> select substr(ename,3,1), ename from emp where empno=7788;
+
+SUBS ENAME
+---- ----------
+O    SCOTT
+
+SQL> select abs(10) from dual;
+
+   ABS(10)
+----------
+        10
+
+SQL> select abs(-10) from dual;
+
+  ABS(-10)
+----------
+        10
+
+SQL> select abs(-10.5) from dual;
+
+ABS(-10.5)
+----------
+      10.5
+
+
+
+SQL> select ceil(5.5) from dual;
+
+ CEIL(5.5)
+----------
+         6
+
+SQL> select floor(5.5) from dual;
+
+FLOOR(5.5)
+----------
+         5
+
+SQL> select ceil(5.2) from dual;
+
+ CEIL(5.2)
+----------
+         6
+
+SQL> select ceil(5.6) from dual;
+
+ CEIL(5.6)
+----------
+         6
+
+SQL> select ceil(5.1) from dual;
+
+ CEIL(5.1)
+----------
+         6
+
+SQL> select floor(5.1) from dual;
+
+FLOOR(5.1)
+----------
+         5
+
+SQL> select floor(5.9) from dual;
+
+FLOOR(5.9)
+----------
+         5
+
+SQL> select floor(4.3) from dual;
+
+FLOOR(4.3)
+----------
+         4
+
+SQL> select ceil(4.3) from dual;
+
+ CEIL(4.3)
+----------
+         5
+
+SQL> select ceil(3) from dual;
+
+   CEIL(3)
+----------
+         3
+
+SQL> select floor(3) from dual;
+
+  FLOOR(3)
+----------
+         3
+
+SQL> select floor(3) from dual;
+
+  FLOOR(3)
+----------
+         3
+
+SQL> select floor(3.5) from dual;
+
+FLOOR(3.5)
+----------
+         3
+
+SQL> select ceil(3.5) from dual;
+
+ CEIL(3.5)
+----------
+         4
+
+SQL> select ceil(3.3) from dual;
+
+ CEIL(3.3)
+----------
+         4
+
+SQL> select ceil(3.9) from dual;
+
+ CEIL(3.9)
+----------
+         4
+
+SQL> select ceil(3.5) from dual;
+
+ CEIL(3.5)
+----------
+         4
+
+SQL> select ceil(3.5) from dual;
+
+ CEIL(3.5)
+----------
+         4
+
+SQL> select round(4.5) from dual;
+
+ROUND(4.5)
+----------
+         5
+
+SQL> select round(4.4) from dual;
+
+ROUND(4.4)
+----------
+         4
+
+SQL> select round(352.3456,4) from dual;
+
+ROUND(352.3456,4)
+-----------------
+         352.3456
+
+SQL> select round(352.34554,4) from dual;
+
+ROUND(352.34554,4)
+------------------
+          352.3455
+
+SQL> select round(352.34554555,5) from dual;
+
+ROUND(352.34554555,5)
+---------------------
+            352.34555
+
+SQL> select round(-3.7) from dual;
+
+ROUND(-3.7)
+-----------
+         -4
+
+SQL> select round(120.54321,-2) from dual;
+
+ROUND(120.54321,-2)
+-------------------
+                100
+
+SQL> select round(120,-2) from dual;
+
+ROUND(120,-2)
+-------------
+          100
+
+SQL> select round(120089,-2) from dual;
+
+ROUND(120089,-2)
+----------------
+          120100
+
+SQL> select * from emp where mod(empno,2)=0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+10 rows selected.
+
+SQL> select * from emp where not mod(empno,2)=0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+SQL> select * from emp where not mod(empno,2)=0;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+
+SQL> select power(2,16) from dual;
+
+POWER(2,16)
+-----------
+      65536
+
+SQL> select power(5,8) from dual;
+
+POWER(5,8)
+----------
+    390625
+
+SQL> select power(2,32) from dual;
+
+POWER(2,32)
+-----------
+ 4294967296
+
+SQL> select power(2,128) from dual;
+
+POWER(2,128)
+------------
+  3.4028E+38
+
+SQL> select sqrt(25) from dual;
+
+  SQRT(25)
+----------
+         5
+
+SQL> select sqrt(25) from dual;
+
+  SQRT(25)
+----------
+         5
+
+SQL> select sqrt(625) from dual;
+
+ SQRT(625)
+----------
+        25
+
+SQL> select power(25,2) from dual;
+
+POWER(25,2)
+-----------
+        625
+
+SQL> select power(625,.5) from dual;
+
+POWER(625,.5)
+-------------
+           25
+
+SQL> select power(625,1/4) from dual;
+
+POWER(625,1/4)
+--------------
+             5
+
+SQL> select power(625,1/3) from dual;
+
+POWER(625,1/3)
+--------------
+    8.54987973
+
+SQL> select sign(10) from dual;
+
+  SIGN(10)
+----------
+         1
+
+SQL> select sign(-10) from dual;
+
+ SIGN(-10)
+----------
+        -1
+
+SQL> select sign(0) from dual;
+
+   SIGN(0)
+----------
+         0
+
+SQL> select sign(-11) from dual;
+
+ SIGN(-11)
+----------
+        -1
+
+SQL> select trunc(1.75) from dual;
+
+TRUNC(1.75)
+-----------
+          1
+
+SQL> select trunc(1.5) from dual;
+
+TRUNC(1.5)
+----------
+         1
+
+SQL> select trunc(1.99) from dual;
+
+TRUNC(1.99)
+-----------
+          1
+
+SQL> select trunc(-1.99) from dual;
+
+TRUNC(-1.99)
+------------
+          -1
+
+SQL> select trunc(-199) from dual;
+
+TRUNC(-199)
+-----------
+       -199
+
+SQL> select trunc(-1.67,1) from dual;
+
+TRUNC(-1.67,1)
+--------------
+          -1.6
+
+SQL> select trunc(1.67) from dual;
+
+TRUNC(1.67)
+-----------
+          1
+
+SQL> select trunc(1.678767,-4) from dual;
+
+TRUNC(1.678767,-4)
+------------------
+                 0
+
+SQL> select trunc(1.678,-4) from dual;
+
+TRUNC(1.678,-4)
+---------------
+              0
+
+SQL> select trunc(1.6786,-4) from dual;
+
+TRUNC(1.6786,-4)
+----------------
+               0
+
+SQL> select trunc(190.6786,-4) from dual;
+
+TRUNC(190.6786,-4)
+------------------
+                 0
+
+SQL> select trunc(19786,-4) from dual;
+
+TRUNC(19786,-4)
+---------------
+          10000
+
+SQL> select trunc(19786,-2) from dual;
+
+TRUNC(19786,-2)
+---------------
+          19700
+
+SQL> select trunc(197.86,-2) from dual;
+
+TRUNC(197.86,-2)
+----------------
+             100
+
+SQL> select trunc(197.86,-2) from dual;
+
+TRUNC(197.86,-2)
+----------------
+             100
+
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+10-OCT-23
+
+SQL> select systimestamp from dual;
+
+SYSTIMESTAMP
+---------------------------------------------------------------------------
+10-OCT-23 04.49.00.759000 PM +05:30
+
+SQL> select systimestamp from emp;
+
+SYSTIMESTAMP
+---------------------------------------------------------------------------
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+
+SYSTIMESTAMP
+---------------------------------------------------------------------------
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+10-OCT-23 04.51.42.544000 PM +05:30
+
+14 rows selected.
+
+SQL> select sessiontimezone from emp;
+
+SESSIONTIMEZONE
+---------------------------------------------------------------------------
++05:30
++05:30
++05:30
++05:30
++05:30
++05:30
++05:30
++05:30
++05:30
++05:30
++05:30
+
+SESSIONTIMEZONE
+---------------------------------------------------------------------------
++05:30
++05:30
++05:30
+
+14 rows selected.
+
+SQL> select sessiontimezone from dual;
+
+SESSIONTIMEZONE
+---------------------------------------------------------------------------
++05:30
+
+SQL> select add_months('10-OCT-2023',14) from emp;
+
+ADD_MONTH
+---------
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+10-DEC-24
+
+ADD_MONTH
+---------
+10-DEC-24
+10-DEC-24
+10-DEC-24
+
+14 rows selected.
+
+SQL> select add_months('10-OCT-2023',14) from dual;
+
+ADD_MONTH
+---------
+10-DEC-24
+
+
+SQL> select add_months(sysdate,14) from dual;
+
+ADD_MONTH
+---------
+10-DEC-24
+
+
+SQL> select months_between('10-JAN-2023',sysdate) from dual;
+
+MONTHS_BETWEEN('10-JAN-2023',SYSDATE)
+-------------------------------------
+                                   -9
+
+SQL> select months_between('10-JAN-2024',sysdate) from dual;
+
+MONTHS_BETWEEN('10-JAN-2024',SYSDATE)
+-------------------------------------
+                                    3
