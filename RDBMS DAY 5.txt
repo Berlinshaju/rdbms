@@ -1,0 +1,1580 @@
+
+SQL> select ename,dname from emp,dept;
+
+ENAME      DNAME
+---------- --------------
+SMITH      ACCOUNTING
+ALLEN      ACCOUNTING
+WARD       ACCOUNTING
+JONES      ACCOUNTING
+MARTIN     ACCOUNTING
+BLAKE      ACCOUNTING
+CLARK      ACCOUNTING
+SCOTT      ACCOUNTING
+KING       ACCOUNTING
+TURNER     ACCOUNTING
+ADAMS      ACCOUNTING
+JAMES      ACCOUNTING
+FORD       ACCOUNTING
+MILLER     ACCOUNTING
+SMITH      RESEARCH
+ALLEN      RESEARCH
+WARD       RESEARCH
+JONES      RESEARCH
+MARTIN     RESEARCH
+BLAKE      RESEARCH
+CLARK      RESEARCH
+SCOTT      RESEARCH
+KING       RESEARCH
+TURNER     RESEARCH
+ADAMS      RESEARCH
+JAMES      RESEARCH
+FORD       RESEARCH
+
+ENAME      DNAME
+---------- --------------
+MILLER     RESEARCH
+SMITH      SALES
+ALLEN      SALES
+WARD       SALES
+JONES      SALES
+MARTIN     SALES
+BLAKE      SALES
+CLARK      SALES
+SCOTT      SALES
+KING       SALES
+TURNER     SALES
+ADAMS      SALES
+JAMES      SALES
+FORD       SALES
+MILLER     SALES
+SMITH      OPERATIONS
+ALLEN      OPERATIONS
+WARD       OPERATIONS
+JONES      OPERATIONS
+MARTIN     OPERATIONS
+BLAKE      OPERATIONS
+CLARK      OPERATIONS
+SCOTT      OPERATIONS
+KING       OPERATIONS
+TURNER     OPERATIONS
+ADAMS      OPERATIONS
+JAMES      OPERATIONS
+
+ENAME      DNAME
+---------- --------------
+FORD       OPERATIONS
+MILLER     OPERATIONS
+
+56 rows selected.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+
+
+SQL> select ename,dname, emp.deptno,dept.deptno from emp,dept;
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+SMITH      ACCOUNTING             20         10
+ALLEN      ACCOUNTING             30         10
+WARD       ACCOUNTING             30         10
+JONES      ACCOUNTING             20         10
+MARTIN     ACCOUNTING             30         10
+BLAKE      ACCOUNTING             30         10
+CLARK      ACCOUNTING             10         10
+SCOTT      ACCOUNTING             20         10
+KING       ACCOUNTING             10         10
+TURNER     ACCOUNTING             30         10
+ADAMS      ACCOUNTING             20         10
+JAMES      ACCOUNTING             30         10
+FORD       ACCOUNTING             20         10
+MILLER     ACCOUNTING             10         10
+SMITH      RESEARCH               20         20
+ALLEN      RESEARCH               30         20
+WARD       RESEARCH               30         20
+JONES      RESEARCH               20         20
+MARTIN     RESEARCH               30         20
+BLAKE      RESEARCH               30         20
+CLARK      RESEARCH               10         20
+SCOTT      RESEARCH               20         20
+KING       RESEARCH               10         20
+TURNER     RESEARCH               30         20
+ADAMS      RESEARCH               20         20
+JAMES      RESEARCH               30         20
+FORD       RESEARCH               20         20
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+MILLER     RESEARCH               10         20
+SMITH      SALES                  20         30
+ALLEN      SALES                  30         30
+WARD       SALES                  30         30
+JONES      SALES                  20         30
+MARTIN     SALES                  30         30
+BLAKE      SALES                  30         30
+CLARK      SALES                  10         30
+SCOTT      SALES                  20         30
+KING       SALES                  10         30
+TURNER     SALES                  30         30
+ADAMS      SALES                  20         30
+JAMES      SALES                  30         30
+FORD       SALES                  20         30
+MILLER     SALES                  10         30
+SMITH      OPERATIONS             20         40
+ALLEN      OPERATIONS             30         40
+WARD       OPERATIONS             30         40
+JONES      OPERATIONS             20         40
+MARTIN     OPERATIONS             30         40
+BLAKE      OPERATIONS             30         40
+CLARK      OPERATIONS             10         40
+SCOTT      OPERATIONS             20         40
+KING       OPERATIONS             10         40
+TURNER     OPERATIONS             30         40
+ADAMS      OPERATIONS             20         40
+JAMES      OPERATIONS             30         40
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+FORD       OPERATIONS             20         40
+MILLER     OPERATIONS             10         40
+
+56 rows selected.
+
+SQL> select emp.ename,dept.dname,emp.deptno,dept.deptno from emp,dept;
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+SMITH      ACCOUNTING             20         10
+ALLEN      ACCOUNTING             30         10
+WARD       ACCOUNTING             30         10
+JONES      ACCOUNTING             20         10
+MARTIN     ACCOUNTING             30         10
+BLAKE      ACCOUNTING             30         10
+CLARK      ACCOUNTING             10         10
+SCOTT      ACCOUNTING             20         10
+KING       ACCOUNTING             10         10
+TURNER     ACCOUNTING             30         10
+ADAMS      ACCOUNTING             20         10
+JAMES      ACCOUNTING             30         10
+FORD       ACCOUNTING             20         10
+MILLER     ACCOUNTING             10         10
+SMITH      RESEARCH               20         20
+ALLEN      RESEARCH               30         20
+WARD       RESEARCH               30         20
+JONES      RESEARCH               20         20
+MARTIN     RESEARCH               30         20
+BLAKE      RESEARCH               30         20
+CLARK      RESEARCH               10         20
+SCOTT      RESEARCH               20         20
+KING       RESEARCH               10         20
+TURNER     RESEARCH               30         20
+ADAMS      RESEARCH               20         20
+JAMES      RESEARCH               30         20
+FORD       RESEARCH               20         20
+MILLER     RESEARCH               10         20
+SMITH      SALES                  20         30
+ALLEN      SALES                  30         30
+WARD       SALES                  30         30
+JONES      SALES                  20         30
+MARTIN     SALES                  30         30
+BLAKE      SALES                  30         30
+CLARK      SALES                  10         30
+SCOTT      SALES                  20         30
+KING       SALES                  10         30
+TURNER     SALES                  30         30
+ADAMS      SALES                  20         30
+JAMES      SALES                  30         30
+FORD       SALES                  20         30
+MILLER     SALES                  10         30
+SMITH      OPERATIONS             20         40
+ALLEN      OPERATIONS             30         40
+WARD       OPERATIONS             30         40
+JONES      OPERATIONS             20         40
+MARTIN     OPERATIONS             30         40
+BLAKE      OPERATIONS             30         40
+CLARK      OPERATIONS             10         40
+SCOTT      OPERATIONS             20         40
+KING       OPERATIONS             10         40
+TURNER     OPERATIONS             30         40
+ADAMS      OPERATIONS             20         40
+JAMES      OPERATIONS             30         40
+FORD       OPERATIONS             20         40
+MILLER     OPERATIONS             10         40
+
+56 rows selected.
+
+SQL>
+
+SQL> select ename,dname from emp,dept where emp.deptno=dept.deptno;
+
+ENAME      DNAME
+---------- --------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+JONES      RESEARCH
+FORD       RESEARCH
+ADAMS      RESEARCH
+SMITH      RESEARCH
+SCOTT      RESEARCH
+WARD       SALES
+TURNER     SALES
+ALLEN      SALES
+JAMES      SALES
+BLAKE      SALES
+MARTIN     SALES
+
+14 rows selected.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select empno from emp;
+
+     EMPNO
+----------
+      7369
+      7499
+      7521
+      7566
+      7654
+      7698
+      7782
+      7788
+      7839
+      7844
+      7876
+      7900
+      7902
+      7934
+
+14 rows selected.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+DEPT
+EMP
+BONUS
+SALGRADE
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+
+SQL> select ename,grade from emp,salgrade;
+
+ENAME           GRADE
+---------- ----------
+SMITH               1
+ALLEN               1
+WARD                1
+JONES               1
+MARTIN              1
+BLAKE               1
+CLARK               1
+SCOTT               1
+KING                1
+TURNER              1
+ADAMS               1
+JAMES               1
+FORD                1
+MILLER              1
+SMITH               2
+ALLEN               2
+WARD                2
+JONES               2
+MARTIN              2
+BLAKE               2
+CLARK               2
+SCOTT               2
+KING                2
+TURNER              2
+ADAMS               2
+JAMES               2
+FORD                2
+
+ENAME           GRADE
+---------- ----------
+MILLER              2
+SMITH               3
+ALLEN               3
+WARD                3
+JONES               3
+MARTIN              3
+BLAKE               3
+CLARK               3
+SCOTT               3
+KING                3
+TURNER              3
+ADAMS               3
+JAMES               3
+FORD                3
+MILLER              3
+SMITH               4
+ALLEN               4
+WARD                4
+JONES               4
+MARTIN              4
+BLAKE               4
+CLARK               4
+SCOTT               4
+KING                4
+TURNER              4
+ADAMS               4
+JAMES               4
+
+ENAME           GRADE
+---------- ----------
+FORD                4
+MILLER              4
+SMITH               5
+ALLEN               5
+WARD                5
+JONES               5
+MARTIN              5
+BLAKE               5
+CLARK               5
+SCOTT               5
+KING                5
+TURNER              5
+ADAMS               5
+JAMES               5
+FORD                5
+MILLER              5
+
+70 rows selected.
+
+SQL> select ename,grade from emp,salgrade where sal between losal and hisal;
+
+ENAME           GRADE
+---------- ----------
+SMITH               1
+JAMES               1
+ADAMS               1
+WARD                2
+MARTIN              2
+MILLER              2
+TURNER              3
+ALLEN               3
+CLARK               4
+BLAKE               4
+JONES               4
+SCOTT               4
+FORD                4
+KING                5
+
+14 rows selected.
+
+
+
+SQL> select ename,dname from emp,dept;
+
+ENAME      DNAME
+---------- --------------
+SMITH      ACCOUNTING
+ALLEN      ACCOUNTING
+WARD       ACCOUNTING
+JONES      ACCOUNTING
+MARTIN     ACCOUNTING
+BLAKE      ACCOUNTING
+CLARK      ACCOUNTING
+SCOTT      ACCOUNTING
+KING       ACCOUNTING
+TURNER     ACCOUNTING
+ADAMS      ACCOUNTING
+JAMES      ACCOUNTING
+FORD       ACCOUNTING
+MILLER     ACCOUNTING
+SMITH      RESEARCH
+ALLEN      RESEARCH
+WARD       RESEARCH
+JONES      RESEARCH
+MARTIN     RESEARCH
+BLAKE      RESEARCH
+CLARK      RESEARCH
+SCOTT      RESEARCH
+KING       RESEARCH
+TURNER     RESEARCH
+ADAMS      RESEARCH
+JAMES      RESEARCH
+FORD       RESEARCH
+
+ENAME      DNAME
+---------- --------------
+MILLER     RESEARCH
+SMITH      SALES
+ALLEN      SALES
+WARD       SALES
+JONES      SALES
+MARTIN     SALES
+BLAKE      SALES
+CLARK      SALES
+SCOTT      SALES
+KING       SALES
+TURNER     SALES
+ADAMS      SALES
+JAMES      SALES
+FORD       SALES
+MILLER     SALES
+SMITH      OPERATIONS
+ALLEN      OPERATIONS
+WARD       OPERATIONS
+JONES      OPERATIONS
+MARTIN     OPERATIONS
+BLAKE      OPERATIONS
+CLARK      OPERATIONS
+SCOTT      OPERATIONS
+KING       OPERATIONS
+TURNER     OPERATIONS
+ADAMS      OPERATIONS
+JAMES      OPERATIONS
+
+ENAME      DNAME
+---------- --------------
+FORD       OPERATIONS
+MILLER     OPERATIONS
+
+56 rows selected.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select ename,dname emp.deptno,dept.deptno from emp,dept;
+select ename,dname emp.deptno,dept.deptno from emp,dept
+                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select ename,dname, emp.deptno,dept.deptno from emp,dept;
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+SMITH      ACCOUNTING             20         10
+ALLEN      ACCOUNTING             30         10
+WARD       ACCOUNTING             30         10
+JONES      ACCOUNTING             20         10
+MARTIN     ACCOUNTING             30         10
+BLAKE      ACCOUNTING             30         10
+CLARK      ACCOUNTING             10         10
+SCOTT      ACCOUNTING             20         10
+KING       ACCOUNTING             10         10
+TURNER     ACCOUNTING             30         10
+ADAMS      ACCOUNTING             20         10
+JAMES      ACCOUNTING             30         10
+FORD       ACCOUNTING             20         10
+MILLER     ACCOUNTING             10         10
+SMITH      RESEARCH               20         20
+ALLEN      RESEARCH               30         20
+WARD       RESEARCH               30         20
+JONES      RESEARCH               20         20
+MARTIN     RESEARCH               30         20
+BLAKE      RESEARCH               30         20
+CLARK      RESEARCH               10         20
+SCOTT      RESEARCH               20         20
+KING       RESEARCH               10         20
+TURNER     RESEARCH               30         20
+ADAMS      RESEARCH               20         20
+JAMES      RESEARCH               30         20
+FORD       RESEARCH               20         20
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+MILLER     RESEARCH               10         20
+SMITH      SALES                  20         30
+ALLEN      SALES                  30         30
+WARD       SALES                  30         30
+JONES      SALES                  20         30
+MARTIN     SALES                  30         30
+BLAKE      SALES                  30         30
+CLARK      SALES                  10         30
+SCOTT      SALES                  20         30
+KING       SALES                  10         30
+TURNER     SALES                  30         30
+ADAMS      SALES                  20         30
+JAMES      SALES                  30         30
+FORD       SALES                  20         30
+MILLER     SALES                  10         30
+SMITH      OPERATIONS             20         40
+ALLEN      OPERATIONS             30         40
+WARD       OPERATIONS             30         40
+JONES      OPERATIONS             20         40
+MARTIN     OPERATIONS             30         40
+BLAKE      OPERATIONS             30         40
+CLARK      OPERATIONS             10         40
+SCOTT      OPERATIONS             20         40
+KING       OPERATIONS             10         40
+TURNER     OPERATIONS             30         40
+ADAMS      OPERATIONS             20         40
+JAMES      OPERATIONS             30         40
+
+ENAME      DNAME              DEPTNO     DEPTNO
+---------- -------------- ---------- ----------
+FORD       OPERATIONS             20         40
+MILLER     OPERATIONS             10         40
+
+56 rows selected.
+
+SQL> select ename,dname from emp,dept where emp.deptno=dept.deptno;
+
+ENAME      DNAME
+---------- --------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+JONES      RESEARCH
+FORD       RESEARCH
+ADAMS      RESEARCH
+SMITH      RESEARCH
+SCOTT      RESEARCH
+WARD       SALES
+TURNER     SALES
+ALLEN      SALES
+JAMES      SALES
+BLAKE      SALES
+MARTIN     SALES
+
+14 rows selected.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select empno from emp;
+
+     EMPNO
+----------
+      7369
+      7499
+      7521
+      7566
+      7654
+      7698
+      7782
+      7788
+      7839
+      7844
+      7876
+      7900
+      7902
+      7934
+
+14 rows selected.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+DEPT
+EMP
+BONUS
+SALGRADE
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from salgrade;
+
+     GRADE      LOSAL      HISAL
+---------- ---------- ----------
+         1        700       1200
+         2       1201       1400
+         3       1401       2000
+         4       2001       3000
+         5       3001       9999
+
+SQL> select ename,grade from emp,salgrade;
+
+ENAME           GRADE
+---------- ----------
+SMITH               1
+ALLEN               1
+WARD                1
+JONES               1
+MARTIN              1
+BLAKE               1
+CLARK               1
+SCOTT               1
+KING                1
+TURNER              1
+ADAMS               1
+JAMES               1
+FORD                1
+MILLER              1
+SMITH               2
+ALLEN               2
+WARD                2
+JONES               2
+MARTIN              2
+BLAKE               2
+CLARK               2
+SCOTT               2
+KING                2
+TURNER              2
+ADAMS               2
+JAMES               2
+FORD                2
+
+ENAME           GRADE
+---------- ----------
+MILLER              2
+SMITH               3
+ALLEN               3
+WARD                3
+JONES               3
+MARTIN              3
+BLAKE               3
+CLARK               3
+SCOTT               3
+KING                3
+TURNER              3
+ADAMS               3
+JAMES               3
+FORD                3
+MILLER              3
+SMITH               4
+ALLEN               4
+WARD                4
+JONES               4
+MARTIN              4
+BLAKE               4
+CLARK               4
+SCOTT               4
+KING                4
+TURNER              4
+ADAMS               4
+JAMES               4
+
+ENAME           GRADE
+---------- ----------
+FORD                4
+MILLER              4
+SMITH               5
+ALLEN               5
+WARD                5
+JONES               5
+MARTIN              5
+BLAKE               5
+CLARK               5
+SCOTT               5
+KING                5
+TURNER              5
+ADAMS               5
+JAMES               5
+FORD                5
+MILLER              5
+
+70 rows selected.
+
+SQL> select ename,grade from emp,salgrade where sal between losal and hisal;
+
+ENAME           GRADE
+---------- ----------
+SMITH               1
+JAMES               1
+ADAMS               1
+WARD                2
+MARTIN              2
+MILLER              2
+TURNER              3
+ALLEN               3
+CLARK               4
+BLAKE               4
+JONES               4
+SCOTT               4
+FORD                4
+KING                5
+
+14 rows selected.
+
+SQL> clear
+SQL> select * from emp, dept where emp.deptno=dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------
+DNAME          LOC
+-------------- -------------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10
+ACCOUNTING     NEW YORK
+
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10         10
+ACCOUNTING     NEW YORK
+
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10         10
+ACCOUNTING     NEW YORK
+
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20
+RESEARCH       DALLAS
+
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20
+RESEARCH       DALLAS
+
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20
+RESEARCH       DALLAS
+
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20         20
+RESEARCH       DALLAS
+
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20
+RESEARCH       DALLAS
+
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30         30
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ----------
+DNAME          LOC
+-------------- -------------
+SALES          CHICAGO
+
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30         30
+SALES          CHICAGO
+
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30         30
+SALES          CHICAGO
+
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30         30
+SALES          CHICAGO
+
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         30
+SALES          CHICAGO
+
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30         30
+SALES          CHICAGO
+
+
+14 rows selected.
+
+
+SQL> set linesize 300;
+SQL> select * from emp, dept where emp.deptno=dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- -------------- -------------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10 ACCOUNTING     NEW YORK      7839 KING       PRESIDENT            17-NOV-81       5000                    10         10 ACCOUNTING     NEW YORK      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10         10 ACCOUNTING     NEW YORK      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH       DALLAS
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH       DALLAS
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH       DALLAS
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20         20 RESEARCH       DALLAS
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30         30 SALES          CHICAGO
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30         30 SALES          CHICAGO
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30         30 SALES          CHICAGO
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30         30 SALES          CHICAGO
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         30 SALES          CHICAGO
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30         30 SALES          CHICAGO
+
+14 rows selected.
+
+SQL> select * from emp right outer join dept on emp.deptno=dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- -------------- -------------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10 ACCOUNTING     NEW YORK      7839 KING       PRESIDENT            17-NOV-81       5000                    10         10 ACCOUNTING     NEW YORK      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10         10 ACCOUNTING     NEW YORK      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH       DALLAS
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH       DALLAS
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH       DALLAS
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20         20 RESEARCH       DALLAS
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30         30 SALES          CHICAGO
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30         30 SALES          CHICAGO
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30         30 SALES          CHICAGO
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30         30 SALES          CHICAGO
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         30 SALES          CHICAGO
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30         30 SALES          CHICAGO
+                                                                                              40 OPERATIONS     BOSTON
+
+15 rows selected.
+
+SQL> select * from dept left outer join emp on emp.deptno=dept.deptno;
+
+    DEPTNO DNAME          LOC                EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- -------------- ------------- ---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+        10 ACCOUNTING     NEW YORK            7782 CLARK      MANAGER         7839 09-JUN-81       2450                   10
+        10 ACCOUNTING     NEW YORK            7839 KING       PRESIDENT            17-NOV-81       5000                   10
+        10 ACCOUNTING     NEW YORK            7934 MILLER     CLERK           7782 23-JAN-82       1300                   10
+        20 RESEARCH       DALLAS              7566 JONES      MANAGER         7839 02-APR-81       2975                   20
+        20 RESEARCH       DALLAS              7902 FORD       ANALYST         7566 03-DEC-81       3000                   20
+        20 RESEARCH       DALLAS              7876 ADAMS      CLERK           7788 23-MAY-87       1100                   20
+        20 RESEARCH       DALLAS              7369 SMITH      CLERK           7902 17-DEC-80        800                   20
+        20 RESEARCH       DALLAS              7788 SCOTT      ANALYST         7566 19-APR-87       3000                   20
+        30 SALES          CHICAGO             7521 WARD       SALESMAN        7698 22-FEB-81       1250        500        30
+        30 SALES          CHICAGO             7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0        30
+        30 SALES          CHICAGO             7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300        30
+        30 SALES          CHICAGO             7900 JAMES      CLERK           7698 03-DEC-81        950                   30
+        30 SALES          CHICAGO             7698 BLAKE      MANAGER         7839 01-MAY-81       2850                   30
+        30 SALES          CHICAGO             7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400        30
+        40 OPERATIONS     BOSTON
+
+15 rows selected.
+
+SQL> select * from emp left outer join dept on emp.deptno=dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- -------------- -------------
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10         10 ACCOUNTING     NEW YORK      7839 KING       PRESIDENT            17-NOV-81       5000                    10         10 ACCOUNTING     NEW YORK      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10 ACCOUNTING     NEW YORK      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH       DALLAS
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH       DALLAS
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH       DALLAS
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20         20 RESEARCH       DALLAS
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30         30 SALES          CHICAGO
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30         30 SALES          CHICAGO
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         30 SALES          CHICAGO
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30         30 SALES          CHICAGO
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30         30 SALES          CHICAGO
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30         30 SALES          CHICAGO
+
+14 rows selected.
+
+SQL> select * from emp left outer join dept on emp.deptno=dept.deptno;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO     DEPTNO DNAME          LOC
+---------- ---------- --------- ---------- --------- ---------- ---------- ---------- ---------- -------------- -------------
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10         10 ACCOUNTING     NEW YORK      7839 KING       PRESIDENT            17-NOV-81       5000                    10         10 ACCOUNTING     NEW YORK      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10         10 ACCOUNTING     NEW YORK      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20         20 RESEARCH       DALLAS
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20         20 RESEARCH       DALLAS
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20         20 RESEARCH       DALLAS
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20         20 RESEARCH       DALLAS
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20         20 RESEARCH       DALLAS
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30         30 SALES          CHICAGO
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30         30 SALES          CHICAGO
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30         30 SALES          CHICAGO
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30         30 SALES          CHICAGO
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30         30 SALES          CHICAGO
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30         30 SALES          CHICAGO
+
+14 rows selected.
+
+SQL> select * from dept left outer join emp on emp.deptno=dept.deptno;
+
+    DEPTNO DNAME          LOC                EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- -------------- ------------- ---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+        10 ACCOUNTING     NEW YORK            7782 CLARK      MANAGER         7839 09-JUN-81       2450                   10
+        10 ACCOUNTING     NEW YORK            7839 KING       PRESIDENT            17-NOV-81       5000                   10
+        10 ACCOUNTING     NEW YORK            7934 MILLER     CLERK           7782 23-JAN-82       1300                   10
+        20 RESEARCH       DALLAS              7566 JONES      MANAGER         7839 02-APR-81       2975                   20
+        20 RESEARCH       DALLAS              7902 FORD       ANALYST         7566 03-DEC-81       3000                   20
+        20 RESEARCH       DALLAS              7876 ADAMS      CLERK           7788 23-MAY-87       1100                   20
+        20 RESEARCH       DALLAS              7369 SMITH      CLERK           7902 17-DEC-80        800                   20
+        20 RESEARCH       DALLAS              7788 SCOTT      ANALYST         7566 19-APR-87       3000                   20
+        30 SALES          CHICAGO             7521 WARD       SALESMAN        7698 22-FEB-81       1250        500        30
+        30 SALES          CHICAGO             7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0        30
+        30 SALES          CHICAGO             7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300        30
+        30 SALES          CHICAGO             7900 JAMES      CLERK           7698 03-DEC-81        950                   30
+        30 SALES          CHICAGO             7698 BLAKE      MANAGER         7839 01-MAY-81       2850                   30
+        30 SALES          CHICAGO             7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400        30
+        40 OPERATIONS     BOSTON
+
+15 rows selected.
+
+SQL> set pagesize 100;
+SQL> select * from dept left outer join emp on emp.deptno=dept.deptno;
+
+    DEPTNO DNAME          LOC                EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- -------------- ------------- ---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+        10 ACCOUNTING     NEW YORK            7782 CLARK      MANAGER         7839 09-JUN-81       2450                   10
+        10 ACCOUNTING     NEW YORK            7839 KING       PRESIDENT            17-NOV-81       5000                   10
+        10 ACCOUNTING     NEW YORK            7934 MILLER     CLERK           7782 23-JAN-82       1300                   10
+        20 RESEARCH       DALLAS              7566 JONES      MANAGER         7839 02-APR-81       2975                   20
+        20 RESEARCH       DALLAS              7902 FORD       ANALYST         7566 03-DEC-81       3000                   20
+        20 RESEARCH       DALLAS              7876 ADAMS      CLERK           7788 23-MAY-87       1100                   20
+        20 RESEARCH       DALLAS              7369 SMITH      CLERK           7902 17-DEC-80        800                   20
+        20 RESEARCH       DALLAS              7788 SCOTT      ANALYST         7566 19-APR-87       3000                   20
+        30 SALES          CHICAGO             7521 WARD       SALESMAN        7698 22-FEB-81       1250        500        30
+        30 SALES          CHICAGO             7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0        30
+        30 SALES          CHICAGO             7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300        30
+        30 SALES          CHICAGO             7900 JAMES      CLERK           7698 03-DEC-81        950                   30
+        30 SALES          CHICAGO             7698 BLAKE      MANAGER         7839 01-MAY-81       2850                   30
+        30 SALES          CHICAGO             7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400        30
+        40 OPERATIONS     BOSTON
+
+15 rows selected.
+
+SQL>
+
+
+SQL> select ename,dname from emp right outer join dept on emp.deptno=dept.deptno;
+
+ENAME      DNAME
+---------- --------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+JONES      RESEARCH
+FORD       RESEARCH
+ADAMS      RESEARCH
+SMITH      RESEARCH
+SCOTT      RESEARCH
+WARD       SALES
+TURNER     SALES
+ALLEN      SALES
+JAMES      SALES
+BLAKE      SALES
+MARTIN     SALES
+           OPERATIONS
+
+15 rows selected.
+
+SQL> select ename,dname from emp left outer join dept on emp.deptno=dept.deptno;
+
+ENAME      DNAME
+---------- --------------
+MILLER     ACCOUNTING
+KING       ACCOUNTING
+CLARK      ACCOUNTING
+FORD       RESEARCH
+ADAMS      RESEARCH
+SCOTT      RESEARCH
+JONES      RESEARCH
+SMITH      RESEARCH
+JAMES      SALES
+TURNER     SALES
+BLAKE      SALES
+MARTIN     SALES
+WARD       SALES
+ALLEN      SALES
+
+14 rows selected.
+
+SQL> select ename,dname from emp,dept where emp.deptno(+)=dept.deptno;
+
+ENAME      DNAME
+---------- --------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+JONES      RESEARCH
+FORD       RESEARCH
+ADAMS      RESEARCH
+SMITH      RESEARCH
+SCOTT      RESEARCH
+WARD       SALES
+TURNER     SALES
+ALLEN      SALES
+JAMES      SALES
+BLAKE      SALES
+MARTIN     SALES
+           OPERATIONS
+
+15 rows selected.
+
+SQL> select ename from emp where empno=mgr;
+
+no rows selected
+
+SQL> select e.ename,b.ename from emp e, emp b;
+
+ENAME      ENAME
+---------- ----------
+SMITH      SMITH
+SMITH      ALLEN
+SMITH      WARD
+SMITH      JONES
+SMITH      MARTIN
+SMITH      BLAKE
+SMITH      CLARK
+SMITH      SCOTT
+SMITH      KING
+SMITH      TURNER
+SMITH      ADAMS
+SMITH      JAMES
+SMITH      FORD
+SMITH      MILLER
+ALLEN      SMITH
+ALLEN      ALLEN
+ALLEN      WARD
+ALLEN      JONES
+ALLEN      MARTIN
+ALLEN      BLAKE
+ALLEN      CLARK
+ALLEN      SCOTT
+ALLEN      KING
+ALLEN      TURNER
+ALLEN      ADAMS
+ALLEN      JAMES
+ALLEN      FORD
+ALLEN      MILLER
+WARD       SMITH
+WARD       ALLEN
+WARD       WARD
+WARD       JONES
+WARD       MARTIN
+WARD       BLAKE
+WARD       CLARK
+WARD       SCOTT
+WARD       KING
+WARD       TURNER
+WARD       ADAMS
+WARD       JAMES
+WARD       FORD
+WARD       MILLER
+JONES      SMITH
+JONES      ALLEN
+JONES      WARD
+JONES      JONES
+JONES      MARTIN
+JONES      BLAKE
+JONES      CLARK
+JONES      SCOTT
+JONES      KING
+JONES      TURNER
+JONES      ADAMS
+JONES      JAMES
+JONES      FORD
+JONES      MILLER
+MARTIN     SMITH
+MARTIN     ALLEN
+MARTIN     WARD
+MARTIN     JONES
+MARTIN     MARTIN
+MARTIN     BLAKE
+MARTIN     CLARK
+MARTIN     SCOTT
+MARTIN     KING
+MARTIN     TURNER
+MARTIN     ADAMS
+MARTIN     JAMES
+MARTIN     FORD
+MARTIN     MILLER
+BLAKE      SMITH
+BLAKE      ALLEN
+BLAKE      WARD
+BLAKE      JONES
+BLAKE      MARTIN
+BLAKE      BLAKE
+BLAKE      CLARK
+BLAKE      SCOTT
+BLAKE      KING
+BLAKE      TURNER
+BLAKE      ADAMS
+BLAKE      JAMES
+BLAKE      FORD
+BLAKE      MILLER
+CLARK      SMITH
+CLARK      ALLEN
+CLARK      WARD
+CLARK      JONES
+CLARK      MARTIN
+CLARK      BLAKE
+CLARK      CLARK
+CLARK      SCOTT
+CLARK      KING
+CLARK      TURNER
+CLARK      ADAMS
+CLARK      JAMES
+CLARK      FORD
+
+ENAME      ENAME
+---------- ----------
+CLARK      MILLER
+SCOTT      SMITH
+SCOTT      ALLEN
+SCOTT      WARD
+SCOTT      JONES
+SCOTT      MARTIN
+SCOTT      BLAKE
+SCOTT      CLARK
+SCOTT      SCOTT
+SCOTT      KING
+SCOTT      TURNER
+SCOTT      ADAMS
+SCOTT      JAMES
+SCOTT      FORD
+SCOTT      MILLER
+KING       SMITH
+KING       ALLEN
+KING       WARD
+KING       JONES
+KING       MARTIN
+KING       BLAKE
+KING       CLARK
+KING       SCOTT
+KING       KING
+KING       TURNER
+KING       ADAMS
+KING       JAMES
+KING       FORD
+KING       MILLER
+TURNER     SMITH
+TURNER     ALLEN
+TURNER     WARD
+TURNER     JONES
+TURNER     MARTIN
+TURNER     BLAKE
+TURNER     CLARK
+TURNER     SCOTT
+TURNER     KING
+TURNER     TURNER
+TURNER     ADAMS
+TURNER     JAMES
+TURNER     FORD
+TURNER     MILLER
+ADAMS      SMITH
+ADAMS      ALLEN
+ADAMS      WARD
+ADAMS      JONES
+ADAMS      MARTIN
+ADAMS      BLAKE
+ADAMS      CLARK
+ADAMS      SCOTT
+ADAMS      KING
+ADAMS      TURNER
+ADAMS      ADAMS
+ADAMS      JAMES
+ADAMS      FORD
+ADAMS      MILLER
+JAMES      SMITH
+JAMES      ALLEN
+JAMES      WARD
+JAMES      JONES
+JAMES      MARTIN
+JAMES      BLAKE
+JAMES      CLARK
+JAMES      SCOTT
+JAMES      KING
+JAMES      TURNER
+JAMES      ADAMS
+JAMES      JAMES
+JAMES      FORD
+JAMES      MILLER
+FORD       SMITH
+FORD       ALLEN
+FORD       WARD
+FORD       JONES
+FORD       MARTIN
+FORD       BLAKE
+FORD       CLARK
+FORD       SCOTT
+FORD       KING
+FORD       TURNER
+FORD       ADAMS
+FORD       JAMES
+FORD       FORD
+FORD       MILLER
+MILLER     SMITH
+MILLER     ALLEN
+MILLER     WARD
+MILLER     JONES
+MILLER     MARTIN
+MILLER     BLAKE
+MILLER     CLARK
+MILLER     SCOTT
+MILLER     KING
+MILLER     TURNER
+MILLER     ADAMS
+MILLER     JAMES
+
+ENAME      ENAME
+---------- ----------
+MILLER     FORD
+MILLER     MILLER
+
+196 rows selected.
+
+SQL> select e.ename,b.ename from emp e, emp b where e.mgr=b.empno;
+
+ENAME      ENAME
+---------- ----------
+FORD       JONES
+SCOTT      JONES
+TURNER     BLAKE
+ALLEN      BLAKE
+WARD       BLAKE
+JAMES      BLAKE
+MARTIN     BLAKE
+MILLER     CLARK
+ADAMS      SCOTT
+BLAKE      KING
+JONES      KING
+CLARK      KING
+SMITH      FORD
+
+13 rows selected.
+
+SQL> select e.ename employee,b.ename boss from emp e, emp b where e.mgr=b.empno;
+
+EMPLOYEE   BOSS
+---------- ----------
+FORD       JONES
+SCOTT      JONES
+TURNER     BLAKE
+ALLEN      BLAKE
+WARD       BLAKE
+JAMES      BLAKE
+MARTIN     BLAKE
+MILLER     CLARK
+ADAMS      SCOTT
+BLAKE      KING
+JONES      KING
+CLARK      KING
+SMITH      FORD
+
+13 rows selected.
+
+SQL>
+
+SQL> select max(sal)from emp;
+
+  MAX(SAL)
+----------
+      5000
+
+SQL> select ename from emp where sal=5000;
+
+ENAME
+----------
+KING
+
+
+SQL> select ename from emp where sal=(select max(sal) from emp);
+
+ENAME
+----------
+KING
+
+
+SQL> select sal from emp;
+
+       SAL
+----------
+       800
+      1600
+      1250
+      2975
+      1250
+      2850
+      2450
+      3000
+      5000
+      1500
+      1100
+       950
+      3000
+      1300
+
+14 rows selected.
+
+
+SQL> select ename from emp where ename='SMITH';
+
+ENAME
+----------
+SMITH
+
+
+
+
+SQL> select ename from emp where deptno=(select deptno from emp where ename='SMITH') ;
+
+ENAME
+----------
+SMITH
+JONES
+SCOTT
+ADAMS
+FORD
+
+SQL> select ename from emp where deptno=(select deptno from emp where ename='SMITH') ;
+
+ENAME
+----------
+SMITH
+JONES
+SCOTT
+ADAMS
+FORD
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select * from dept;
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+SQL> select ename from emp where deptno=(select deptno from dept where loc='CHICAGO');
+
+ENAME
+----------
+ALLEN
+WARD
+MARTIN
+BLAKE
+TURNER
+JAMES
+
+6 rows selected.
+
+
+
+SQL> select ename from emp where not deptno=(select deptno from dept where loc='CHICAGO');
+
+ENAME
+----------
+SMITH
+JONES
+CLARK
+SCOTT
+KING
+ADAMS
+FORD
+MILLER
+
+8 rows selected.
+
+
+
+
+SQL> select ename, sal from emp where job='MANAGER' and sal>(select avg(sal) from emp where job='MANAGER');
+
+ENAME             SAL
+---------- ----------
+JONES            2975
+BLAKE            2850
+
+SQL> select ename, sal from emp where sal>(select avg(sal) from emp where job='MANAGER');
+
+ENAME             SAL
+---------- ----------
+JONES            2975
+BLAKE            2850
+SCOTT            3000
+KING             5000
+FORD             3000
+
+SQL> select ename,sal, job from emp where (job,deptno)=(select job, deptno from emp where ename='SMITH');
+
+ENAME             SAL JOB
+---------- ---------- ---------
+SMITH             800 CLERK
+ADAMS            1100 CLERK
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+SQL> select ename,sal, job from emp where (job,deptno)=(select job, deptno from emp where ename='JAMES');
+
+ENAME             SAL JOB
+---------- ---------- ---------
+JAMES             950 CLERK
+
+
+SQL> select ename,deptno, sal from emp where (deptno,sal) in (select deptno, max(sal) from emp group by deptno);
+
+ENAME          DEPTNO        SAL
+---------- ---------- ----------
+BLAKE              30       2850
+FORD               20       3000
+SCOTT              20       3000
+KING               10       5000
+
