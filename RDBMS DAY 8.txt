@@ -1,0 +1,372 @@
+CAR RENTAL SERVICE
+--------------------
+
+cars(car_id['C001'], model, license_plate, color[red,blue,black, white], seater[1,4,6], renthr)
+drivers(dr_id['D001'], dr_name, dr_lincense, dr_contact, rank[<=5], dob)
+rent(carid,dr_id,rent_date, hrs)
+
+
+create table cars(
+car_id varchar2(4) check(car_id like 'C___'),
+model varchar2(20) not null,
+license varchar2(10) not null,
+color varchar2(5) not null check(color in('red','blue','black','white')),
+seater number not null,
+renthr number(10,2),
+PRIMARY KEY(car_id));
+
+create table drivers(
+dr_id varchar2(4) check(dr_id like 'D___'),
+dr_name varchar2(30) NOT NULL,
+dr_license varchar2(12) not null,
+dr_contact number(10),
+rank number(1) check(rank<=5),
+dob date,
+primary key(dr_id));
+
+create table rent(
+car_id varchar2(4) not null,
+dr_id varchar2(4) not null,
+rent_date date not null,
+hrs number(2) not null,
+foreign key(car_id) references cars(car_id) on delete cascade,
+foreign key(dr_id) references drivers(dr_id) on delete cascade);
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> create user wayne identified by badman;
+
+User created.
+
+SQL> grant connect,resource to wayne;
+
+Grant succeeded.
+
+SQL> connect wayne/badman
+Connected.
+SQL> show user;
+USER is "WAYNE"
+SQL> select table_name from user_tables;
+
+no rows selected
+
+C:\Users\Administrator>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Nov 7 22:52:55 2023
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: wayne
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> show user;
+USER is "WAYNE"
+SQL> select table_name from user_tables;
+
+no rows selected
+
+
+
+
+
+SQL> create table cars(
+  2  car_id varchar2(4) check(car_id like 'C___'),
+  3  model varchar2(20) not null,
+  4  license varchar2(10) not null,
+  5  color varchar2(5) not null check(color in('red','blue','black','white')),
+  6  seater number not null,
+  7  renthr number(10,2),
+  8  PRIMARY KEY(car_id));
+
+Table created.
+
+
+
+SQL> desc cars
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CAR_ID                                    NOT NULL VARCHAR2(4)
+ MODEL                                     NOT NULL VARCHAR2(20)
+ LICENSE                                   NOT NULL VARCHAR2(10)
+ COLOR                                     NOT NULL VARCHAR2(5)
+ SEATER                                    NOT NULL NUMBER
+ RENTHR                                             NUMBER(10,2)
+
+
+SQL> insert into cars values('C002','Audi Q8','WB124545','red',4,6000);
+
+1 row created.
+
+
+
+SQL> insert into cars values('C003','BMW','WB124676','blue',6,8000);
+
+1 row created.
+
+
+
+SQL> insert into cars values('C004','Lamborghini','WB1246767','black',4,5000);
+
+1 row created.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+CARS
+
+
+SQL> select * from cars;
+
+CAR_ MODEL                LICENSE    COLOR     SEATER     RENTHR
+---- -------------------- ---------- ----- ---------- ----------
+C002 Audi Q8              WB124545   red            4       6000
+C003 BMW                  WB124676   blue           6       8000
+C004 Lamborghini          WB1246767  black          4       5000
+
+
+
+
+
+SQL> create table drivers(
+  2  dr_id varchar2(4) check(dr_id like 'D___'),
+  3  dr_name varchar2(30) NOT NULL,
+  4  dr_license varchar2(12) not null,
+  5  dr_contact number(10),
+  6  rank number(1) check(rank<=5),
+  7  dob date,
+  8  primary key(dr_id));
+
+Table created.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+CARS
+DRIVERS
+
+SQL> desc drivers;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DR_ID                                     NOT NULL VARCHAR2(4)
+ DR_NAME                                   NOT NULL VARCHAR2(30)
+ DR_LICENSE                                NOT NULL VARCHAR2(12)
+ DR_CONTACT                                         NUMBER(10)
+ RANK                                               NUMBER(1)
+ DOB                                                DATE
+
+
+
+SQL> insert into drivers values('D001','dinesh','SE100897234',7347695797,4,'10-DEC-1999');
+
+1 row created.
+
+SQL> insert into drivers values('D002','helen','SE100897245',9347695797,4,'15-APR-1997');
+
+1 row created.
+
+SQL> insert into drivers values('D003','raj kumar','SE100897246',9347657978,5,'5-JAN-1995');
+
+1 row created.
+
+
+SQL> select * from drivers;
+
+DR_I DR_NAME                        DR_LICENSE   DR_CONTACT       RANK DOB
+---- ------------------------------ ------------ ---------- ---------- ---------
+D001 dinesh                         SE100897234  7347695797          4 10-DEC-99
+D002 helen                          SE100897245  9347695797          4 15-APR-97
+D003 raj kumar                      SE100897246  9347657978          5 05-JAN-95
+
+
+
+
+SQL> create table rent(
+  2  car_id varchar2(4) not null,
+  3  dr_id varchar2(4) not null,
+  4  rent_date date not null,
+  5  hrs number(2) not null,
+  6  foreign key(car_id) references cars(car_id) on delete cascade,
+  7  foreign key(dr_id) references drivers(dr_id) on delete cascade);
+
+Table created.
+
+SQL> desc rent;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CAR_ID                                    NOT NULL VARCHAR2(4)
+ DR_ID                                     NOT NULL VARCHAR2(4)
+ RENT_DATE                                 NOT NULL DATE
+ HRS                                       NOT NULL NUMBER(2)
+
+SQL> insert into rent values('C002','D001','11-JAN-2023',2);
+
+1 row created.
+
+SQL> insert into rent values('C003','D002','13-FEB-2023',5);
+
+1 row created.
+
+SQL> insert into rent values('C004','D003','15-APR-2023',3);
+
+1 row created.
+
+SQL> select * from rent;
+
+CAR_ DR_I RENT_DATE        HRS
+---- ---- --------- ----------
+C002 D001 11-JAN-23          2
+C003 D002 13-FEB-23          5
+C004 D003 15-APR-23          3
+
+SQL> set linesize 100;
+
+SQL> select * from cars;
+
+CAR_ MODEL                LICENSE    COLOR     SEATER     RENTHR
+---- -------------------- ---------- ----- ---------- ----------
+C002 Audi Q8              WB124545   red            4       6000
+C003 BMW                  WB124676   blue           6       8000
+C004 Lamborghini          WB1246767  black          4       5000
+
+SQL> select * from drivers;
+
+DR_I DR_NAME                        DR_LICENSE   DR_CONTACT       RANK DOB
+---- ------------------------------ ------------ ---------- ---------- ---------
+D001 dinesh                         SE100897234  7347695797          4 10-DEC-99
+D002 helen                          SE100897245  9347695797          4 15-APR-97
+D003 raj kumar                      SE100897246  9347657978          5 05-JAN-95
+
+SQL> select * from rent;
+
+CAR_ DR_I RENT_DATE        HRS
+---- ---- --------- ----------
+C002 D001 11-JAN-23          2
+C003 D002 13-FEB-23          5
+C004 D003 15-APR-23          3
+
+SQL> select model, dr_name, rent_date, hrs from cars,drivers,rent where rent.car_id=cars.car_id and rent.dr_id= drivers.dr_id;
+
+MODEL                DR_NAME                        RENT_DATE        HRS
+-------------------- ------------------------------ --------- ----------
+Audi Q8              dinesh                         11-JAN-23          2
+BMW                  helen                          13-FEB-23          5
+Lamborghini          raj kumar                      15-APR-23          3
+
+
+
+SQL> desc cars;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CAR_ID                                                NOT NULL VARCHAR2(4)
+ MODEL                                                 NOT NULL VARCHAR2(20)
+ LICENSE                                               NOT NULL VARCHAR2(10)
+ COLOR                                                 NOT NULL VARCHAR2(5)
+ SEATER                                                NOT NULL NUMBER
+ RENTHR                                                         NUMBER(10,2)
+
+SQL> desc drivers;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DR_ID                                                 NOT NULL VARCHAR2(4)
+ DR_NAME                                               NOT NULL VARCHAR2(30)
+ DR_LICENSE                                            NOT NULL VARCHAR2(12)
+ DR_CONTACT                                                     NUMBER(10)
+ RANK                                                           NUMBER(1)
+ DOB                                                            DATE
+
+SQL> desc rent;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CAR_ID                                                NOT NULL VARCHAR2(4)
+ DR_ID                                                 NOT NULL VARCHAR2(4)
+ RENT_DATE                                             NOT NULL DATE
+ HRS                                                   NOT NULL NUMBER(2)
+
+
+
+SQL> alter table rent modify dr_id varchar2(6);
+
+Table altered.
+
+SQL> desc rent;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CAR_ID                                                NOT NULL VARCHAR2(4)
+ DR_ID                                                 NOT NULL VARCHAR2(6)
+ RENT_DATE                                             NOT NULL DATE
+ HRS                                                   NOT NULL NUMBER(2)
+
+SQL> desc rent;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CAR_ID                                                NOT NULL VARCHAR2(4)
+ DR_ID                                                 NOT NULL VARCHAR2(6)
+ RENT_DATE                                             NOT NULL DATE
+ HRS                                                   NOT NULL NUMBER(2)
+
+SQL> alter table rent add customer varchar2(20);
+
+Table altered.
+
+SQL> desc rent;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CAR_ID                                                NOT NULL VARCHAR2(4)
+ DR_ID                                                 NOT NULL VARCHAR2(6)
+ RENT_DATE                                             NOT NULL DATE
+ HRS                                                   NOT NULL NUMBER(2)
+ CUSTOMER                                                       VARCHAR2(20)
+
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE        HRS CUSTOMER
+---- ------ --------- ---------- --------------------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23          5
+C004 D003   15-APR-23          3
+
+
+SQL> update rent set customer = 'berlin shaju' where car_id='C002';
+
+1 row updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE        HRS CUSTOMER
+---- ------ --------- ---------- --------------------
+C002 D001   11-JAN-23          2 berlin shaju
+C003 D002   13-FEB-23          5
+C004 D003   15-APR-23          3
+
+
+SQL> update rent set customer = 'suraj mondal' where car_id='C003';
+
+1 row updated.
+
+SQL> update rent set customer = 'biswajith' where car_id='C004';
+
+1 row updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE        HRS CUSTOMER
+---- ------ --------- ---------- --------------------
+C002 D001   11-JAN-23          2 berlin shaju
+C003 D002   13-FEB-23          5 suraj mondal
+C004 D003   15-APR-23          3 biswajith

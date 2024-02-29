@@ -1,0 +1,899 @@
+
+SQL> desc rent;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CAR_ID                                                NOT NULL VARCHAR2(4)
+ DR_ID                                                 NOT NULL VARCHAR2(6)
+ RENT_DATE                                             NOT NULL DATE
+ HRS                                                   NOT NULL NUMBER(2)
+ CUSTOMER                                                       VARCHAR2(20)
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE        HRS CUSTOMER
+---- ------ --------- ---------- --------------------
+C002 D001   11-JAN-23          2 berlin shaju
+C003 D002   13-FEB-23          5 suraj mondal
+C004 D003   15-APR-23          3 biswajith
+
+SQL> alter table rent drop column customer;
+
+Table altered.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE        HRS
+---- ------ --------- ----------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23          5
+C004 D003   15-APR-23          3
+
+SQL> alter table rent rename column hrs to hours;
+
+Table altered.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE      HOURS
+---- ------ --------- ----------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23          5
+C004 D003   15-APR-23          3
+
+
+SQL>alter table rent add renthr NUMBER(10, 2);
+
+Table altered.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C002 D001   11-JAN-23
+C003 D002   13-FEB-23
+C004 D003   15-APR-23
+
+
+SQL> update rent set renthr = 2;
+
+3 rows updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23          2
+C004 D003   15-APR-23          2
+
+
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C002 D001   11-JAN-23
+C003 D002   13-FEB-23
+C004 D003   15-APR-23
+
+SQL> update rent set renthr = 2 where dr_id ='D001';
+
+1 row updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23
+C004 D003   15-APR-23
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23
+C004 D003   15-APR-23
+
+SQL> update rent set renthr = 8 where dr_id ='D002';
+
+1 row updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C002 D001   11-JAN-23          2
+C003 D002   13-FEB-23          8
+C004 D003   15-APR-23
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> delete from rent where car_id = 'C002';
+
+1 row deleted.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C003 D002   13-FEB-23          8
+C004 D003   15-APR-23
+
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C003 D002   13-FEB-23          8
+C004 D003   15-APR-23
+
+SQL> update rent set renthr = null where car_id = 'C003';
+
+1 row updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C003 D002   13-FEB-23
+C004 D003   15-APR-23
+
+
+SQL> update rent set renthr = 10 where car_id = 'C003';
+
+1 row updated.
+
+SQL> select * from rent;
+
+CAR_ DR_ID  RENT_DATE     RENTHR
+---- ------ --------- ----------
+C003 D002   13-FEB-23         10
+C004 D003   15-APR-23
+
+
+
+
+
+inserting rows into multiple tables:
+
+create table emp10cp1(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+mgr number(4),
+hiredate date,
+sal number(7,2),
+comm number(7,2),
+deptno number(2));
+
+
+
+create table emp10cp2(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+mgr number(4),
+hiredate date,
+sal number(7,2),
+comm number(7,2),
+deptno number(2));
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+DEPT
+EMP
+BONUS
+SALGRADE
+EMP10CP1
+EMP10CP2
+
+6 rows selected.
+
+insert all
+into emp10cp1 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+into emp10cp2 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+select * from emp where deptno = 10;
+
+SQL> select * from emp10cp1;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+
+
+create table test1(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+deptno number(2));
+
+
+create table test2(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+deptno number(2));
+
+insert all
+into test1 values(empno,ename,job,deptno)
+into test2 values(empno,ename,job,deptno)
+select * from emp where deptno = 10;
+
+
+
+SQL> create table test1(
+  2  empno number(4) primary key,
+  3  ename varchar2(10),
+  4  job varchar2(9),
+  5  deptno number(2));
+
+Table created.
+
+SQL> create table test2(
+  2  empno number(4) primary key,
+  3  ename varchar2(10),
+  4  job varchar2(9),
+  5  deptno number(2));
+
+Table created.
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+DEPT
+EMP
+BONUS
+SALGRADE
+EMP10CP1
+EMP10CP2
+TEST1
+TEST2
+
+8 rows selected.
+
+SQL> select * from test1;
+
+no rows selected
+
+SQL> select * from test2;
+
+no rows selected
+
+SQL> insert all
+  2  into test1 values(empno,ename,job,deptno)
+  3  into test2 values(empno,ename,job,deptno)
+  4  select * from emp where deptno = 10;
+
+6 rows created.
+
+
+SQL> select * from test1;
+
+     EMPNO ENAME      JOB           DEPTNO
+---------- ---------- --------- ----------
+      7782 CLARK      MANAGER           10
+      7839 KING       PRESIDENT         10
+      7934 MILLER     CLERK             10
+
+SQL> select * from test2;
+
+     EMPNO ENAME      JOB           DEPTNO
+---------- ---------- --------- ----------
+      7782 CLARK      MANAGER           10
+      7839 KING       PRESIDENT         10
+      7934 MILLER     CLERK             10
+
+
+
+
+create table test3(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+deptno number(2));
+
+
+create table test4(
+empno number(4) primary key,
+comm number(7,2),
+deptno number(2));
+
+insert all
+into test3 values(empno,ename,job,deptno)
+into test4 values(empno,comm,deptno)
+select * from emp where deptno = 20;
+
+
+SQL> create table test3(
+  2  empno number(4) primary key,
+  3  ename varchar2(10),
+  4  job varchar2(9),
+  5  deptno number(2));
+
+Table created.
+
+
+
+SQL> create table test4(
+  2  empno number(4) primary key,
+  3  comm number(7,2),
+  4  deptno number(2));
+
+Table created.
+
+
+SQL> select * from test3;
+
+no rows selected
+
+SQL> select * from test4;
+
+no rows selected
+
+
+SQL> select * from test3;
+
+     EMPNO ENAME      JOB           DEPTNO
+---------- ---------- --------- ----------
+      7369 SMITH      CLERK             20
+      7566 JONES      MANAGER           20
+      7788 SCOTT      ANALYST           20
+      7876 ADAMS      CLERK             20
+      7902 FORD       ANALYST           20
+
+SQL> select * from test4;
+
+     EMPNO       COMM     DEPTNO
+---------- ---------- ----------
+      7369                    20
+      7566                    20
+      7788                    20
+      7876                    20
+      7902                    20
+
+
+
+SQL> alter table test4 drop column comm;
+
+Table altered.
+
+SQL> select * from test4;
+
+     EMPNO     DEPTNO
+---------- ----------
+      7369         20
+      7566         20
+      7788         20
+      7876         20
+      7902         20
+
+
+
+SQL> drop table emp10cp2;
+
+Table dropped.
+
+SQL> drop table emp10cp1;
+
+Table dropped.
+
+
+create table emp10cp1(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+mgr number(4),
+hiredate date,
+sal number(7,2),
+comm number(7,2),
+deptno number(2));
+
+
+
+create table emp10cp2(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+mgr number(4),
+hiredate date,
+sal number(7,2),
+comm number(7,2),
+deptno number(2));
+
+
+
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+DEPT
+EMP
+BONUS
+SALGRADE
+TEST1
+TEST2
+TEST3
+TEST4
+EMP10CP1
+EMP10CP2
+
+10 rows selected.
+
+
+insert all
+when sal > 2000 then into emp10cp1 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+when sal <= 2000 then into emp10cp2 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+select * from emp;
+
+SQL> insert all
+  2  when sal > 2000 then into emp10cp1 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+  3  when sal <= 2000 then into emp10cp2 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+  4  select * from emp;
+
+12 rows created.
+
+
+
+
+SQL> select * from emp10cp1;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+6 rows selected.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+
+
+
+create table emp10cp3(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+mgr number(4),
+hiredate date,
+sal number(7,2),
+comm number(7,2),
+deptno number(2));
+
+
+create table emp10cp4(
+empno number(4) primary key,
+ename varchar2(10),
+job varchar2(9),
+mgr number(4),
+hiredate date,
+sal number(7,2),
+comm number(7,2),
+deptno number(2));
+
+
+insert all
+when deptno > 10 then into emp10cp3 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+when deptno < 30 then into emp10cp4 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+select * from emp;
+
+SQL> insert all
+  2  when deptno > 10 then into emp10cp3 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+  3  when deptno < 30 then into emp10cp4 values(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+  4  select * from emp;
+
+19 rows created.
+
+
+SQL> select * from emp10cp3;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+11 rows selected.
+
+SQL> select * from emp10cp4;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+
+
+
+
+
+
+
+
+
+SQL> select * from emp10cp1;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+6 rows selected.
+
+SQL> update emp10cp1 set comm = 100;
+
+6 rows updated.
+
+SQL> select * from emp10cp1;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975        100         20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850        100         30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450        100         10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000        100         20
+      7839 KING       PRESIDENT            17-NOV-81       5000        100         10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000        100         20
+
+6 rows selected.
+
+SQL> update emp10cp1 set comm = null;
+
+6 rows updated.
+
+SQL> select * from emp10cp1;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+
+6 rows selected.
+
+
+
+
+
+
+
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+SQL> update emp10cp2 set comm = null;
+
+8 rows updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600                    30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250                    30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250                    30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500                    30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+8 rows selected.
+
+
+
+
+SQL> update emp10cp2 set comm = 300 where empno=7934;
+
+1 row updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300        300         10
+
+8 rows selected.
+
+
+
+SQL> update emp10cp2 set sal = sal+100;
+
+8 rows updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        900                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1700        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1200                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1400        300         10
+
+8 rows selected.
+
+SQL> update emp10cp2 set sal = sal+1500 where empno=7876;
+
+1 row updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        900                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1700        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2700                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1400        300         10
+
+8 rows selected.
+
+
+SQL> update emp10cp2 set sal = sal+50 where deptno=20;
+
+2 rows updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        950                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1700        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2750                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1400        300         10
+
+8 rows selected.
+
+//write a sql query to max salary from emp10cp2 table then the same salary assigning empno = 7369?//
+
+SQL> update emp10cp2 set sal = (select max(sal) from emp10cp2) where empno=7369;
+
+1 row updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80       2750                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1700        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2750                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1400        300         10
+
+8 rows selected.
+
+
+//same job assigning to empno 7934//
+
+SQL> update emp10cp2 set job = (select job from emp10cp2 where job = 'SALESMAN'and empno = 7654) where empno=7934;
+
+1 row updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80       2750                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1700        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2750                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     SALESMAN        7782 23-JAN-82       1400        300         10
+
+8 rows selected.
+
+SQL> update emp10cp2 set (job, sal)=(select job,sal from emp10cp2 where empno=7499) where empno=7934;
+
+1 row updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80       2750                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1700        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2750                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     SALESMAN        7782 23-JAN-82       1700        300         10
+
+8 rows selected.
+
+
+SQL> update emp10cp2 set sal=sal*1.1, comm=comm*1.2 where empno = 7499;
+
+1 row updated.
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80       2750                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1870        360         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1350        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2750                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     SALESMAN        7782 23-JAN-82       1700        300         10
+
+8 rows selected.
+
+
+SQL> variable a number
+SQL> variable b number
+SQL> variable c varchar2(10)
+SQL> update emp10cp2 set sal =sal*1.2, comm=comm*1.2 where empno=7521 returning sal,comm,ename into :a, :b, :c;
+
+1 row updated.
+
+
+SQL> print :a :b :c
+
+         A
+----------
+      1620
+
+
+         B
+----------
+       600
+
+
+C
+--------------------------------
+WARD
+
+SQL> select * from emp10cp2;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80       2750                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1870        360         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1620        600         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1350       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1600          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       2750                    20
+      7900 JAMES      CLERK           7698 03-DEC-81       1050                    30
+      7934 MILLER     SALESMAN        7782 23-JAN-82       1700        300         10
+
+8 rows selected.
+
+
+
+SQL> select * from emp10cp2 where sal=:a and comm=:b and ename=:c;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7521 WARD       SALESMAN        7698 22-FEB-81       1620        600         30
+
+
+

@@ -1,0 +1,19 @@
+Declare
+	empid emp.empno%type;
+	name emp.ename%type;
+	salary emp.sal%type;
+	dno emp.deptno%type;
+	CURSOR test is 
+	select empno,ename,sal,deptno from emp where sal>2000;
+BEGIN
+	OPEN test;
+	loop
+		fetch test into empid,name,salary,dno;
+		if test%FOUND then
+	
+			dbms_output.put_line('EMPNO: '||empid||' EMPNAME '||name||' SALARY: '||salary||' DEPTNO: '||dno);
+		
+	
+		end if;
+	
+	end loop	

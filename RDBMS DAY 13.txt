@@ -1,0 +1,161 @@
+SQL> select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+PK_DEPT
+PK_EMP
+SYS_C007268
+SYS_C007269
+SYS_C007271
+SYS_C007272
+SYS_C007277
+SYS_C007278
+SYS_C007279
+SYS_C007280
+SYS_C007281
+
+11 rows selected.
+
+
+create unique index empiidx on emp1(ename);
+
+create sequence empid
+INCREMENT by (P001)
+start with 8000
+nomaxvalue
+nominvalue;
+
+insert into emp values(currval)or(empid.nextval, 'BRUCE','CLERK','7902','23-FEB-88',1111,100,40);
+
+select empid.nextval from dual;
+select empid.currval from dual;
+
+
+create sequence empid
+INCREMENT by 1
+start with 8000
+nomaxvalue
+nominvalue;
+
+alter sequence empid increment by -1;
+
+insert into emp values(currval)or(empid.nextval, 'BRUCE','CLERK','7902','23-FEB-88',1111,100,40);
+
+
+drop sequence empid;
+
+
+
+create sequence empid
+INCREMENT by (P001)
+start with 1
+nomaxvalue
+nominvalue;
+
+create product table
+pid, pname, qty, price
+(P001)
+
+
+
+
+DROP SEQUENCE INDEX1;
+
+
+CREATE SEQUENCE empid
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOMINVALUE;
+
+
+CREATE SEQUENCE product
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOMINVALUE;
+
+SELECT 'P' || TO_CHAR(empid.NEXTVAL, 'FM000') AS formatted_empid
+FROM dual;
+
+
+CREATE TABLE product (
+    pid VARCHAR2(10) DEFAULT 'P' || TO_CHAR(empid.NEXTVAL, 'FM000') PRIMARY KEY,
+    pname VARCHAR2(255),
+    qty NUMBER,
+    price NUMBER
+);
+
+INSERT INTO product (pname, qty, price) VALUES ('Product A', 10, 50);
+INSERT INTO product (pname, qty, price) VALUES ('Product B', 20, 75);
+
+
+
+
+
+
+
+
+
+CREATE SEQUENCE product_seq
+INCREMENT BY 1
+START WITH 1
+NOMAXVALUE
+NOMINVALUE;
+
+
+CREATE TABLE product (
+    pid VARCHAR2(10) concat('P'|| to_char(pidseq.nextval,'FM009')),
+    pname VARCHAR2(255),
+    qty NUMBER,
+    price NUMBER
+);
+
+INSERT INTO product (pname, qty, price) VALUES ('pid A', 10, 50);
+INSERT INTO product (pname, qty, price) VALUES ('Product B', 20, 75);
+
+select product_seq.nextval from dual;
+select 'P' || to_char(pidseq.currval,'009') from dual;
+SELECT 'P' || TO_CHAR(pidseq.currval, '001') FROM dual;
+
+SELECT default'P' || TO_CHAR(pidseq.currval, '001') FROM dual;
+
+SELECT 'P' || TO_CHAR(pidseq.NEXTVAL, 'FM000') FROM dual;
+
+
+
+
+
+create sequence empid
+INCREMENT by 1
+start with 8000
+nomaxvalue
+nominvalue;
+
+alter sequence empid increment by -1;
+product table
+
+pid, pname, qty, price
+(P001)
+
+
+
+
+concat('P',to_char(pidseq.nextval,'FM009'))
+
+SQL> create table product(
+  2  pid varchar2(4) check(pid like 'P%'),
+  3  pname varchar2(20) not null,
+  4  qty number(5) not null,
+  5  price number(10,2) not null,
+  6  primary key(pid));
+
+Table created.
+
+SQL> insert into product values(concat('P',to_char(pidseq.nextval,'FM009')),'Mouse',10,299.99);
+
+1 row created.
+
+SQL> insert into product values(concat('P',to_char(pidseq.nextval,'FM009')),'Mouse',10,299.99)
+
+

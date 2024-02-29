@@ -1,0 +1,272 @@
+create user stark identified by ironman;
+grant connect, resource to stark;
+grant update on scott.emp to public;
+
+connect stark/ironman;
+
+Grant select permission on scott emp table to everyone:
+
+grant [permission] on [table] to [user];
+grant select on scott.emp to stark;
+
+grant all privileges to scott;
+
+
+
+revoke all privileges from scott;
+
+The database will be inside user called librarian and password books@2023
+
+create a library database including below mentioned tables
+
+	create a library database including below mentioned tables books (bidd,bname,author,price,genre),
+	customer(cid,cname,dob,contact)
+	borrow(cid,bid,bdate)
+
+The database will be inside user called librarian and password books@2023
+
+1.create 3 users user1, user2, user3
+2.These users have permission to select the column bname, author, genre only of table book.
+3.create 3 employee user howard, raj, sheldon
+4.They have all the permission
+
+
+create view display as select bname, author, genre from books;
+
+create role cust;
+create role emp;
+
+grant select on librarian.display to cust;
+grant select on librarian.books(bname,author,genre) to cust;
+
+grant cust to user1,user2,user3;
+
+
+create user drdoom identified by lathveria;
+
+
+CREATE TABLE books (
+    bidd INT PRIMARY KEY,
+    bname VARCHAR(255),
+    author VARCHAR(255),
+    price DECIMAL(10, 2),
+    genre VARCHAR(100)
+);
+
+CREATE TABLE customer (
+    cid INT PRIMARY KEY,
+    cname VARCHAR(255),
+    dob DATE,
+    contact VARCHAR(15)
+);
+
+CREATE TABLE borrow (
+    cid INT,
+    bid INT,
+    bdate DATE,
+    FOREIGN KEY (cid) REFERENCES customer(cid),
+    FOREIGN KEY (bid) REFERENCES books(bidd)
+);
+
+
+
+
+
+
+
+-- Create users user1, user2, and user3:
+
+create user user1 identified by password1;
+create user user2 identified by password2;
+create user user3 identified by password3;
+
+-- Grant permission to select specific columns on the book table
+
+grant select (bname, author, genre) on books to user1;
+grant select (bname, author, genre) on books to user2;
+grant select (bname, author, genre) on books to user3;
+
+
+-- Create users howard, raj, and sheldon:
+
+create user howard identified by password_howard;
+create user raj identified by password_raj;
+create user sheldon identified by password_sheldon;
+
+-- Grant all permissions on the book table to these users:
+
+grant all privileges on books to howard;
+grant all privileges on books to raj;
+grant all privileges on books to sheldon;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> connect stark/ironman
+Connected.
+SQL> select * from scott.emp;
+select * from scott.emp
+                    *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> show user
+USER is "STARK"
+SQL> connect scott/tiger;
+Connected.
+SQL> grant select on scott.emp to stark;
+
+Grant succeeded.
+
+SQL> exit
+Disconnected from Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+C:\Users\Administrator>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Nov 27 15:21:45 2023
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> show user;
+USER is "SYSTEM"
+SQL> grant all privileges to scott;
+
+Grant succeeded.
+
+SQL> connect scott/tiger;
+Connected.
+SQL> create user drdoom identified by lathveria;
+
+User created.
+
+SQL> connect stark/ironman;
+Connected.
+SQL> set linesize 100;
+SQL> select * from scott.emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 STARK      SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      8888 WAYNE      CLERK                                                        30
+
+15 rows selected.
+
+SQL> insert into scott.emp values (8888,'TONY','CLERK',7782,'22-JUL-84',1111,0,40);
+insert into scott.emp values (8888,'TONY','CLERK',7782,'22-JUL-84',1111,0,40)
+                  *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> connect scott/tiger;
+Connected.
+SQL> connect system/cscorner;
+Connected.
+SQL> revoke all privileges from scott;
+
+Revoke succeeded.
+
+SQL> connect scott/tiger;
+Connected.
+
+SQL> create user test identified by test;
+create user test identified by test
+                               *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+
+
+create user librarian identified by books2023
+grant connect, resource to librarian;
+
+CREATE TABLE books (
+    bidd number(4) PRIMARY KEY,
+    bname VARCHAR(255) not n,
+    author VARCHAR(255),
+    price DECIMAL(10, 2),
+    genre VARCHAR(100)
+);
+
+CREATE TABLE customer (
+    cid number(3) PRIMARY KEY,
+    cname VARCHAR(20) not null,
+    dob DATE,
+    contact number(10)
+);
+
+CREATE TABLE borrow (
+    cid INT,
+    bid INT,
+    bdate DATE,
+    FOREIGN KEY (cid) REFERENCES customer(cid),
+    FOREIGN KEY (bid) REFERENCES books(bid)
+);
+
+drop table customer;
+cascate;
+
+
+select table_name from user_tables;
+
+create role cust;
+
+grant all privileges to librarian;
+
+create role emp;
+
+create view display as select bname,author, genre from books;
+grant select on librarian.display to cust;
+
+grant select, update, delete, insert on librarian.books, librarian.customer, librarian.borrows to emp;
+grant select, update, delete, insert on librarian.books to emp;
+grant select, update, delete, insert on  librarian.customer  to emp;
+grant select, update, delete, insert on  librarian.borrows to emp;
+
+
+
+create user user1 identified by password1;
+create user user2 identified by password2;
+create user user3 identified by password3;
+
+grant cust to user1,user2,user3;
+
+grant emp to 
+
+
+Create a database for bank. Then different roles different designation of employees?

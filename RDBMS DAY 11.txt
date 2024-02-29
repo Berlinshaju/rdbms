@@ -1,0 +1,10 @@
+first normal form 1nf
+second normal form 2nf
+third normal form 3nf
+boyce & codd normal form bcnf
+
+1NF
+
+column should not hold multiple value
+not in 1NF
+

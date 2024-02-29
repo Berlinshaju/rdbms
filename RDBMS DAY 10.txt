@@ -1,0 +1,487 @@
+create view test as select ename,job from emp where deptno = 20;
+grant create view to scott;
+
+drop view test;
+create view test as select ename empname, job designation from emp where deptno = 20;
+select ename, dname from emp, dept  where emp.deptno=dept.deptno;
+create view empdept as select ename, dname from emp, dept where emp.deptno=dept.deptno;
+select view_name from user_views;
+create or replace empdept as select ename, sal, dname from emp, dept where emp.deptno=dept.deptno;
+select * from empdept;
+create or replace empdept(name,salary,department) as select ename, sal, dname from emp, dept where emp.deptno=dept.deptno;
+select sum(sal),job from emp group by job;
+select sum(sal) TotalSal,job from emp group by job;
+create view total as select sum(sal) TotalSal,job from emp group by job;
+set linesize 100;
+set linesize 300;
+select view_name,text from user_views;
+
+
+books(bid,bname,author,price)
+create view for display bname and corresponding author
+create view bookinfo as select bname, author from books;
+
+
+
+create force view bookinfo as select bname, author from books
+
+select view_name,text from user_views;
+
+
+create table books(
+bid number primary key,
+bname varchar2(20),
+author varchar2(30),
+price number));
+
+insert into books values(1001,'COSMOS', 'CARL SAGAN', '299.99');
+
+
+create or replace view bookinfo as select bid,bname,author from books;
+select * from bookinfo;
+
+insert into bookinfo values(1003,'THE HIDDEN HINDU','AKSHAT GUPTA');
+select * from books;
+
+delete from book where bid=1001;
+select * from books;
+
+update bookinfo set bid=1001 where bname='THE GRAND DESIGN';
+
+create or replace view bookinfo as select bname, author, from books;
+select * from bookinfo;
+
+--------------------------------------------------------------------------------------------------------------------
+
+SQL> create view test as select ename empname, job designation from emp where deptno = 20;
+create view test as select ename empname, job designation from emp where deptno = 20
+            *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> connect system/cscorner;
+Connected.
+SQL> grant create view to scott;
+
+Grant succeeded.
+
+SQL> connect scott/tiger;
+Connected.
+SQL> create view test as select ename,job from emp where deptno = 20;
+
+View created.
+
+
+SQL> set linesize 300;
+SQL> select view_name,text from user_views;
+
+VIEW_NAME                      TEXT
+------------------------------ --------------------------------------------------------------------------------
+TEST                           select ename,job from emp where deptno = 20
+
+SQL> select ename, dname from emp, dept  where emp.deptno=dept.deptno;
+
+ENAME      DNAME
+---------- --------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+JONES      RESEARCH
+FORD       RESEARCH
+ADAMS      RESEARCH
+SMITH      RESEARCH
+SCOTT      RESEARCH
+WARD       SALES
+TURNER     SALES
+ALLEN      SALES
+
+ENAME      DNAME
+---------- --------------
+JAMES      SALES
+BLAKE      SALES
+MARTIN     SALES
+
+14 rows selected.
+
+SQL> select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+TEST
+
+SQL> create view empdept as select ename, dname from emp, dept where emp.deptno=dept.deptno;
+
+View created.
+
+SQL> select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+EMPDEPT
+TEST
+
+
+SQL> create view total as select sum(sal) TotalSal,job from emp group by job;
+
+View created.
+
+SQL> select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+EMPDEPT
+NEWVIEW
+TEST
+TOTAL
+
+SQL> select * from empdept;
+
+ENAME      DNAME
+---------- --------------
+CLARK      ACCOUNTING
+KING       ACCOUNTING
+MILLER     ACCOUNTING
+JONES      RESEARCH
+FORD       RESEARCH
+ADAMS      RESEARCH
+SMITH      RESEARCH
+SCOTT      RESEARCH
+WARD       SALES
+TURNER     SALES
+ALLEN      SALES
+
+ENAME      DNAME
+---------- --------------
+JAMES      SALES
+BLAKE      SALES
+STARK      SALES
+
+14 rows selected.
+
+SQL> select * from newview;
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7782 CLARK              10 ACCOUNTING
+      7839 KING               10 ACCOUNTING
+      7934 MILLER             10 ACCOUNTING
+      7566 JONES              20 RESEARCH
+      7902 FORD               20 RESEARCH
+      7876 ADAMS              20 RESEARCH
+      7369 SMITH              20 RESEARCH
+      7788 SCOTT              20 RESEARCH
+      7521 WARD               30 SALES
+      7844 TURNER             30 SALES
+      7499 ALLEN              30 SALES
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7900 JAMES              30 SALES
+      7698 BLAKE              30 SALES
+      7654 STARK              30 SALES
+
+14 rows selected.
+
+SQL> select * from test;
+
+ENAME      JOB
+---------- ---------
+SMITH      CLERK
+JONES      MANAGER
+SCOTT      ANALYST
+ADAMS      CLERK
+FORD       ANALYST
+
+SQL> select * from total;
+
+  TOTALSAL JOB
+---------- ---------
+      4150 CLERK
+      5600 SALESMAN
+      5000 PRESIDENT
+      8275 MANAGER
+      6000 ANALYST
+
+SQL> set linesize 300;
+SQL> select view_name,text from user_views;
+
+VIEW_NAME                      TEXT
+------------------------------ --------------------------------------------------------------------------------
+TEST                           select ename,job from emp where deptno = 20
+EMPDEPT                        select ename, dname from emp, dept where emp.deptno=dept.deptno
+NEWVIEW                        select empno,ename,dept.deptno,dname from emp, dept where emp.deptno=dept.deptno
+TOTAL                          select sum(sal) TotalSal,job from emp group by job
+
+SQL>
+
+
+SQL> create force view bookinfo as select bname, author from books;
+
+Warning: View created with compilation errors.
+
+SQL> select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+BOOKINFO
+EMPDEPT
+NEWVIEW
+TEST
+TOTAL
+
+SQL> select * from bookinfo;
+select * from bookinfo
+              *
+ERROR at line 1:
+ORA-04063: view "SCOTT.BOOKINFO" has errors
+
+
+
+
+
+SQL> select sum(sal),job from emp group by job;
+
+  SUM(SAL) JOB
+---------- ---------
+      4150 CLERK
+      5600 SALESMAN
+      5000 PRESIDENT
+      8275 MANAGER
+      6000 ANALYST
+
+SQL> select sum(sal) TotalSal,job from emp group by job;
+
+  TOTALSAL JOB
+---------- ---------
+      4150 CLERK
+      5600 SALESMAN
+      5000 PRESIDENT
+      8275 MANAGER
+      6000 ANALYST
+
+SQL> create table books(
+  2  bid number primary key,
+  3  bname varchar2(20),
+  4  author varchar2(30),
+  5  price number);
+
+Table created.
+
+SQL> insert into books values(1001,'COSMOS', 'CARL SAGAN', '299.99');
+
+1 row created.
+
+SQL> select * from books
+  2
+SQL> select * from books;
+
+       BID BNAME                AUTHOR                              PRICE
+---------- -------------------- ------------------------------ ----------
+      1001 COSMOS               CARL SAGAN                         299.99
+
+SQL> insert into books values(1002,'THE SECRET', 'RHONDA BYRNE', '799.99');
+
+1 row created.
+
+SQL> select * from books;
+
+       BID BNAME                AUTHOR                              PRICE
+---------- -------------------- ------------------------------ ----------
+      1001 COSMOS               CARL SAGAN                         299.99
+
+
+SQL> drop view bookinfo;
+
+View dropped.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL> select empno,ename,dept.deptno,dname from emp, dept where emp.deptno=dept.deptno;
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7782 CLARK              10 ACCOUNTING
+      7839 KING               10 ACCOUNTING
+      7934 MILLER             10 ACCOUNTING
+      7566 JONES              20 RESEARCH
+      7902 FORD               20 RESEARCH
+      7876 ADAMS              20 RESEARCH
+      7369 SMITH              20 RESEARCH
+      7788 SCOTT              20 RESEARCH
+      7521 WARD               30 SALES
+      7844 TURNER             30 SALES
+      7499 ALLEN              30 SALES
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7900 JAMES              30 SALES
+      7698 BLAKE              30 SALES
+      7654 MARTIN             30 SALES
+
+14 rows selected.
+
+SQL> create view newview as select empno,ename,dept.deptno,dname from emp, dept where emp.deptno=dept.deptno;
+
+View created.
+
+SQL> select * from newview;
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7782 CLARK              10 ACCOUNTING
+      7839 KING               10 ACCOUNTING
+      7934 MILLER             10 ACCOUNTING
+      7566 JONES              20 RESEARCH
+      7902 FORD               20 RESEARCH
+      7876 ADAMS              20 RESEARCH
+      7369 SMITH              20 RESEARCH
+      7788 SCOTT              20 RESEARCH
+      7521 WARD               30 SALES
+      7844 TURNER             30 SALES
+      7499 ALLEN              30 SALES
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7900 JAMES              30 SALES
+      7698 BLAKE              30 SALES
+      7654 MARTIN             30 SALES
+
+14 rows selected.
+
+SQL> insert into newview values(8888,'STARK',50,'TECH');
+insert into newview values(8888,'STARK',50,'TECH')
+*
+ERROR at line 1:
+ORA-01776: cannot modify more than one base table through a join view
+
+
+SQL> update newview set deptno=40 where empno = 7654;
+update newview set deptno=40 where empno = 7654
+                   *
+ERROR at line 1:
+ORA-01779: cannot modify a column which maps to a non key-preserved table
+
+
+SQL> update newview set deptno=30 where empno = 7654;
+update newview set deptno=30 where empno = 7654
+                   *
+ERROR at line 1:
+ORA-01779: cannot modify a column which maps to a non key-preserved table
+
+
+SQL> select * from newview;
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7782 CLARK              10 ACCOUNTING
+      7839 KING               10 ACCOUNTING
+      7934 MILLER             10 ACCOUNTING
+      7566 JONES              20 RESEARCH
+      7902 FORD               20 RESEARCH
+      7876 ADAMS              20 RESEARCH
+      7369 SMITH              20 RESEARCH
+      7788 SCOTT              20 RESEARCH
+      7521 WARD               30 SALES
+      7844 TURNER             30 SALES
+      7499 ALLEN              30 SALES
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7900 JAMES              30 SALES
+      7698 BLAKE              30 SALES
+      7654 MARTIN             30 SALES
+
+14 rows selected.
+
+SQL> update newview set ename='STARK' where empno = 7654;
+
+1 row updated.
+
+SQL> select * from newview;
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7782 CLARK              10 ACCOUNTING
+      7839 KING               10 ACCOUNTING
+      7934 MILLER             10 ACCOUNTING
+      7566 JONES              20 RESEARCH
+      7902 FORD               20 RESEARCH
+      7876 ADAMS              20 RESEARCH
+      7369 SMITH              20 RESEARCH
+      7788 SCOTT              20 RESEARCH
+      7521 WARD               30 SALES
+      7844 TURNER             30 SALES
+      7499 ALLEN              30 SALES
+
+     EMPNO ENAME          DEPTNO DNAME
+---------- ---------- ---------- --------------
+      7900 JAMES              30 SALES
+      7698 BLAKE              30 SALES
+      7654 STARK              30 SALES
+
+14 rows selected.
+
+select distinct job from emp;
+
+JOB
+---------
+CLERK
+SALESMAN
+PRESIDENT
+MANAGER
+ANALYST
+
+
+SQL> select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+BOOKINFO
+EMPDEPT
+NEWVIEW
+TEST
+TOTAL
+
+SQL> create or replace view dept20view as select empno,ename,job,deptno from emp where deptno=20;
+
+View created.
+
+SQL> select * from dept20view;
+
+     EMPNO ENAME      JOB           DEPTNO
+---------- ---------- --------- ----------
+      7369 SMITH      CLERK             20
+      7566 JONES      MANAGER           20
+      7788 SCOTT      ANALYST           20
+      7876 ADAMS      CLERK             20
+      7902 FORD       ANALYST           20
+
+SQL> insert into dept20view values(8888,'WAYNE','CLERK',30);
+
+1 row created.
+
+create or replace view bookinfo as select * from emp;
+
+
+
+insert into bookinfo values(1002,'COSMOS','CARL SAGAN');
+select * from bookinfo;
+with read only
+with check option;

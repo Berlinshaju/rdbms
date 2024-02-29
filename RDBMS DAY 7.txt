@@ -1,0 +1,619 @@
+
+
+SQL> show pagesize
+pagesize 100
+SQL> show linesize
+linesize 100
+
+SQL> break on job;
+SQL> set feedback off;
+
+
+SQL> select ename,job from emp order by job;
+
+ENAME      JOB
+---------- ---------
+SCOTT      ANALYST
+FORD       ANALYST
+MILLER     CLERK
+JAMES      CLERK
+SMITH      CLERK
+ADAMS      CLERK
+BLAKE      MANAGER
+JONES      MANAGER
+CLARK      MANAGER
+KING       PRESIDENT
+TURNER     SALESMAN
+MARTIN     SALESMAN
+WARD       SALESMAN
+ALLEN      SALESMAN
+SQL> select ename,job from emp order by job;
+
+ENAME      JOB
+---------- ---------
+SCOTT      ANALYST
+FORD       ANALYST
+MILLER     CLERK
+JAMES      CLERK
+SMITH      CLERK
+ADAMS      CLERK
+BLAKE      MANAGER
+JONES      MANAGER
+CLARK      MANAGER
+KING       PRESIDENT
+TURNER     SALESMAN
+MARTIN     SALESMAN
+WARD       SALESMAN
+ALLEN      SALESMAN
+SQL> break on job;
+SQL> select ename,job from emp order by job;
+
+ENAME      JOB
+---------- ---------
+SCOTT      ANALYST
+FORD
+MILLER     CLERK
+JAMES
+SMITH
+ADAMS
+BLAKE      MANAGER
+JONES
+CLARK
+KING       PRESIDENT
+TURNER     SALESMAN
+MARTIN
+WARD
+ALLEN
+
+
+
+SQL> select ename,job,sal from emp order by job;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+SCOTT      ANALYST         3000
+FORD                       3000
+MILLER     CLERK           1300
+JAMES                       950
+SMITH                       800
+ADAMS                      1100
+BLAKE      MANAGER         2850
+JONES                      2975
+CLARK                      2450
+KING       PRESIDENT       5000
+TURNER     SALESMAN        1500
+MARTIN                     1250
+WARD                       1250
+ALLEN                      1600
+SQL> compute sum of sal on job;
+SQL> select ename,job,sal from emp order by job;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+SCOTT      ANALYST         3000
+FORD                       3000
+           ********* ----------
+           sum             6000
+MILLER     CLERK           1300
+JAMES                       950
+SMITH                       800
+ADAMS                      1100
+           ********* ----------
+           sum             4150
+BLAKE      MANAGER         2850
+JONES                      2975
+CLARK                      2450
+           ********* ----------
+           sum             8275
+KING       PRESIDENT       5000
+           ********* ----------
+           sum             5000
+TURNER     SALESMAN        1500
+MARTIN                     1250
+WARD                       1250
+ALLEN                      1600
+           ********* ----------
+           sum             5600
+SQL> break on job skip 1;
+SQL> select ename,job,sal from emp order by job;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+SCOTT      ANALYST         3000
+FORD                       3000
+           ********* ----------
+           sum             6000
+
+MILLER     CLERK           1300
+JAMES                       950
+SMITH                       800
+ADAMS                      1100
+           ********* ----------
+           sum             4150
+
+BLAKE      MANAGER         2850
+JONES                      2975
+CLARK                      2450
+           ********* ----------
+           sum             8275
+
+KING       PRESIDENT       5000
+           ********* ----------
+           sum             5000
+
+TURNER     SALESMAN        1500
+MARTIN                     1250
+WARD                       1250
+ALLEN                      1600
+           ********* ----------
+           sum             5600
+
+SQL> compute SUM of sal on job;
+SQL> select ename,job,sal from emp order by job;
+
+ENAME      JOB              SAL
+---------- --------- ----------
+SCOTT      ANALYST         3000
+FORD                       3000
+           ********* ----------
+           sum             6000
+
+MILLER     CLERK           1300
+JAMES                       950
+SMITH                       800
+ADAMS                      1100
+           ********* ----------
+           sum             4150
+
+BLAKE      MANAGER         2850
+JONES                      2975
+CLARK                      2450
+           ********* ----------
+           sum             8275
+
+KING       PRESIDENT       5000
+           ********* ----------
+           sum             5000
+
+TURNER     SALESMAN        1500
+MARTIN                     1250
+WARD                       1250
+ALLEN                      1600
+           ********* ----------
+           sum             5600
+
+SQL>
+
+
+SQL> select sal "sal" from emp;
+
+       sal
+----------
+       800
+      1600
+      1250
+      2975
+      1250
+      2850
+      2450
+      3000
+      5000
+      1500
+      1100
+       950
+      3000
+      1300
+
+14 rows selected.
+
+SQL> select sal from emp;
+
+       SAL
+----------
+       800
+      1600
+      1250
+      2975
+      1250
+      2850
+      2450
+      3000
+      5000
+      1500
+      1100
+       950
+      3000
+      1300
+
+14 rows selected.
+
+
+creat a user:
+
+
+1>login as system
+2>create user user_name identified by user_password
+3>grant Privileges
+    grant connect, resource to user_name;
+
+create Of table:
+
+1.>
+
+create table product(
+pid number(3),
+pname char(10),
+qty number,
+price number(5,2)
+);
+
+desc product;
+insert into product values(101,'MOUSE',15,249.99);
+insert into product(pname,qty,price) values('KEYBOARD',10,499.99);
+
+desc product;
+
+insert into product(pid,qty,price) values(102,10,799.99);
+insert into product(pid,pname,qty,price) values(102,'WEBCAM',5,799.99);
+drop table product;
+
+
+create table product(
+pid number(3) not null unique,
+pname char(10),
+qty number not null,
+price number(5,2) not null
+);
+
+select * from product;
+
+
+create table product(
+pid number(3) primary key,
+pname char(10),
+qty number not null,
+price number(5,2) not null
+);
+
+create table product(
+pid number(3),
+pname char(10),
+qty number not null,
+price number(5,2) not null,
+primary key(pid)
+);
+
+dsec product;
+
+
+super key
+candidate key
+primary key
+alternate key
+unique key
+
+
+int --- float  number
+string --- char, varchar, varchar2 1bytes
+
+
+pname: mouse
+
+varchar -> utf-8
+varchar2 -> oracle
+
+SQL> exit
+Disconnected from Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+C:\Users\Administrator>sqlplus
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Oct 31 15:50:45 2023
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+Enter user-name: system
+Enter password:
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> show user;
+USER is "SYSTEM"
+SQL> connect scott/tiger
+Connected.
+SQL> show user
+USER is "SCOTT"
+
+SQL> connect system/cscorner;
+Connected.
+SQL> show user
+USER is "SYSTEM"
+SQL> create user stark identified by ironman;
+
+User created.
+
+SQL> grant connect,resource to stark;
+
+Grant succeeded.
+
+SQL> connect stark/ironman
+Connected.
+SQL> show user;
+USER is "STARK"
+
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+PRODUCT
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 WEBCAM              5     799.99
+       103 WEBCAM              5     799.99
+       104 WEBCAM              5     799.99
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                       NOT NULL NUMBER
+ PRICE                                     NOT NULL NUMBER(5,2)
+
+
+
+SQL> drop table product;
+
+Table dropped.
+
+SQL> select table_name from user_tables;
+
+no rows selected
+
+SQL> create table product(
+  2  pid number(3),
+  3  pname char(10),
+  4  qty number,
+  5  price number(5,2)
+  6  );
+
+Table created.
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                                NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                                NUMBER
+ PRICE                                              NUMBER(5,2)
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+PRODUCT
+
+SQL> select * from product;
+
+no rows selected
+
+SQL> insert into product values(101,'MOUSE',15,249.99);
+
+1 row created.
+
+SQL> insert into product values(102,'KEYBOARD',20,599);
+
+1 row created.
+
+
+SQL> insert into product values(103,'SPEAKER',25,999);
+
+1 row created.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       101 MOUSE              15     249.99
+       102 KEYBOARD           20        599
+       103 SPEAKER            25        999
+
+SQL> select pname,price from product;
+
+PNAME           PRICE
+---------- ----------
+MOUSE          249.99
+KEYBOARD          599
+SPEAKER           999
+
+SQL> select * from product where pid = 103;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       103 SPEAKER            25        999
+
+
+SQL> drop table product;
+
+Table dropped.
+
+SQL> select table_name from user_tables;
+
+no rows selected
+
+SQL> create table product(
+  2  pid number(3) not null unique,
+  3  pname char(10),
+  4  qty number not null,
+  5  price number(5,2) not null
+  6  );
+
+Table created.
+
+SQL> select * from product;
+
+no rows selected
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+PRODUCT
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                       NOT NULL NUMBER
+ PRICE                                     NOT NULL NUMBER(5,2)
+
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                       NOT NULL NUMBER
+ PRICE                                     NOT NULL NUMBER(5,2)
+
+SQL> insert into product(pid,qty,price) values(102,10,799.99);
+
+1 row created.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102                    10     799.99
+
+
+SQL> update product set pname = 'berlin';
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 berlin             10     799.99
+
+SQL> update product set pname = 'suraj' where pid = 102;
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 suraj              10     799.99
+
+SQL> insert into product(pid,qty,price) values(105,20,999);
+
+1 row created.
+
+SQL> insert into product(pid,qty,price) values(103,12,894);
+
+1 row created.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 suraj              10     799.99
+       105                    20        999
+       103                    12        894
+
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                       NOT NULL NUMBER
+ PRICE                                     NOT NULL NUMBER(5,2)
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 suraj              10     799.99
+       105                    20        999
+       103                    12        894
+
+SQL> update product set pname = 'berlin' where pid = 103;
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 suraj              10     799.99
+       105                    20        999
+       103 berlin             12        894
+
+SQL> update product set pname = 'dinesh' where pid = 105;
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME             QTY      PRICE
+---------- ---------- ---------- ----------
+       102 suraj              10     799.99
+       105 dinesh             20        999
+       103 berlin             12        894
+
+SQL> drop table product;
+
+Table dropped.
+
+SQL> create table product(
+  2  pid number(3) primary key,
+  3  pname char(10),
+  4  qty number not null,
+  5  price number(5,2) not null
+  6  );
+
+Table created.
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                       NOT NULL NUMBER
+ PRICE                                     NOT NULL NUMBER(5,2)
+
+SQL> drop table product;
+
+Table dropped.
+
+
+SQL> create table product(
+  2  pid number(3),
+  3  pname char(10),
+  4  qty number not null,
+  5  price number(5,2) not null,
+  6  primary key(pid)
+  7  );
+
+Table created.
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(3)
+ PNAME                                              CHAR(10)
+ QTY                                       NOT NULL NUMBER
+ PRICE                                     NOT NULL NUMBER(5,2)
+
+
+SQL> drop table product;
+
+Table dropped.

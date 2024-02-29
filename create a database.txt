@@ -1,0 +1,59 @@
+
+SQL> CREATE TABLE Persons (
+  2      PersonID number(5) primary key,
+  3      FirstName varchar2(10),
+  4      LastName varchar2(10),
+  5      Address varchar2(25),
+  6      City varchar2(15)
+  7  );
+
+Table created.
+
+SQL> desc persons;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ PERSONID                                                                                                          NOT NULL NUMBER(5)
+ FIRSTNAME                                                                                                                  VARCHAR2(10)
+ LASTNAME                                                                                                                   VARCHAR2(10)
+ ADDRESS                                                                                                                    VARCHAR2(25)
+ CITY                                                                                                                       VARCHAR2(15)
+
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+PERSONS
+
+SQL> set linesize 200;
+SQL> INSERT INTO Persons VALUES ('12134', 'Berlin','Shaju', '3/16 Fathima street','Nagercoil');
+
+1 row created.
+
+SQL> select * from persons;
+
+  PERSONID FIRSTNAME  LASTNAME   ADDRESS                   CITY
+---------- ---------- ---------- ------------------------- ---------------
+     12134 Berlin     Shaju      3/16 Fathima street       Nagercoil
+
+SQL> INSERT INTO Persons VALUES ('12135', 'Suraj','Mondal', '5/2a Salt street','Kolkata');
+
+1 row created.
+
+SQL> INSERT INTO Persons VALUES ('12136', 'Kumar','Yadav', '3/56 Cross street','Chennai');
+
+1 row created.
+
+SQL> INSERT INTO Persons VALUES ('12137', 'Suresh','Raj', '2/8  Near street','Bangalore');
+
+1 row created.
+
+SQL> select * from persons;
+
+  PERSONID FIRSTNAME  LASTNAME   ADDRESS                   CITY
+---------- ---------- ---------- ------------------------- ---------------
+     12134 Berlin     Shaju      3/16 Fathima street       Nagercoil
+     12135 Suraj      Mondal     5/2a Salt street          Kolkata
+     12136 Kumar      Yadav      3/56 Cross street         Chennai
+     12137 Suresh     Raj        2/8  Near street          Bangalore
+
+SQL>

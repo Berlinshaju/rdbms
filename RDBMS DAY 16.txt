@@ -1,0 +1,300 @@
+create or replace procedure name (parameter1,parameter2) is 
+
+create or replace function name (parameter1,parameter2) return type is
+
+create or replace function review(empid number) 
+return number is
+	incr emp.sal%type;
+	net emp.sal%type;
+	vsal emp.sal%type;
+	vcomm emp.comm%type;
+BEGIN	
+	select sal,nvl(comm,0) into vsal, vcomm from emp where empno=empid;
+	net:=vsal+vcomm;
+	if net<=3000 then
+		incr:=net*.3;
+	elsif net>3000 and net<=6000 then
+		incr:=net*.3;
+	else
+		incr:=net*.4;
+	end if;
+	return(incr);
+END review;
+/
+
+
+
+
+
+
+DECLARE
+    empid emp.empno%type:=&empno;
+    amt emp.sal%type;
+	
+BEGIN
+    amt:=review(empid);
+    dbms_output.put_line('Increment Amount: ' || amt);
+	
+END;
+/
+
+
+
+
+2.
+
+
+create or replace trigger sunreview
+before insert on emp
+
+BEGIN
+    if to_char(sysdate,'DAY')='SUNDAY' then
+        raise_application_error(-20100,'Insertion on Sunday is not allowed');
+    end if;
+end;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+
+Create PL/SQL trigger which disallow deletion operation done before 10am and after 6pm.
+
+EVENT: DELETE
+TIMING: BEFORE
+RESTRICTION: not between 10am and 6pm
+ACTION: Error Generate
+
+
+create or replace trigger deletecheck
+before delete on emp
+BEGIN
+	if to_char(sysdate,'HH24') not between '10' and '17' then
+		raise_application_error(-20100,'Deletion of data is only allowed between 10am and 6pm');
+	end if;
+END;
+/
+
+
+
+
+
+
+1.Empid sal increment will be return?
+
+
+SQL> CREATE OR REPLACE FUNCTION review(empid NUMBER)
+  2  RETURN NUMBER IS
+  3  incr NUMBER;
+  4  net NUMBER;
+  5  vsal emp.sal%TYPE;
+  6  vcomm emp.comm%TYPE;
+  7  BEGIN
+  8  SELECT sal, NVL(comm, 0) INTO vsal, vcomm FROM emp WHERE empno = empid;
+  9  net := vsal + vcomm;
+ 10
+ 11  IF net <= 3000 THEN
+ 12  incr := net * 0.3;
+ 13  ELSIF net > 3000 AND net <= 6000 THEN
+ 14  incr := net * 0.3;
+ 15  ELSE
+ 16  incr := net * 0.4;
+ 17  END IF;
+ 18
+ 19  RETURN incr;
+ 20  END review;
+ 21  /
+
+Function created.
+
+
+
+SQL> @test.sql
+Enter value for empno: 7900
+old   2:     empid emp.empno%type:=&empno;
+new   2:     empid emp.empno%type:=7900;
+Increment Amount: 285
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       3000        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 STARK      SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       3000                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       3000          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      8888 WAYNE      CLERK                                                        30
+
+15 rows selected.
+
+SQL> @test.sql
+Enter value for empno: 7900
+old   2:     empid emp.empno%type:=&empno;
+new   2:     empid emp.empno%type:=7900;
+Increment Amount: 285
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from emp;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       3000        500         30
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7654 STARK      SALESMAN        7698 28-SEP-81       1250       1400         30
+      7698 BLAKE      MANAGER         7839 01-MAY-81       3000                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7844 TURNER     SALESMAN        7698 08-SEP-81       3000          0         30
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+      8888 WAYNE      CLERK                                                        30
+
+15 rows selected.
+
+SQL> @test.sql
+Enter value for empno: 7844
+old   2:     empid emp.empno%type:=&empno;
+new   2:     empid emp.empno%type:=7844;
+Increment Amount: 900
+
+PL/SQL procedure successfully completed.
+
+
+
+
+
+
+
+INSERT INTO emp VALUES (8888, 'ERAN', 'CLERK', 7788, TO_DATE('15-DEC-88', 'DD-MON-RR'), 1112, 111, 40);
+
+insert into emp values(8888,'ERAN','CLERK',7788,TO_DATE('15-DEC-88', 'DD-MON-RR'),1112,111,40);
+select to_char(sysdate,'DAY') from dual;
+
+create a pl/sql trigger which disallow deletion operation done before 10am and after 6pm
+
+
+delete from emp where empno=8890;
+
+
+
+
+4. create a trigger with PL/SQL to disallow update of new salary less than previous one.
+
+
+EVENT: UPDATE
+TIMING: BEFORE
+RESTRICTION: NOT OLD_SALARY>NEW_SALARY
+ACTION ERROR
+
+
+CREATE OR REPLACE TRIGGER salcheck
+BEFORE UPDATE OF sal ON emp
+FOR EACH ROW
+BEGIN
+    IF :old.salary < :new.salary THEN
+        RAISE_APPLICATION_ERROR(-20100, 'Salary update not allowed: New salary cannot be less than the previous one.');
+    END IF;
+END salcheck;
+/
+
+4.....
+
+create or replace trigger salcheck
+before update of sal on emp
+for each row
+begin
+	if :old.sal>:new.sal then
+		raise_application_error(-20100,'New Salary should not be less than Old Salary');
+	end if;
+end;
+/
+
+update emp set sal=1111.1 where empno=8888;
+
+
+
+
+5. before deletion of any row save the values in a backup table
+
+
+
+event: delete
+timing: before/after
+restriction: 
+
+
+
+
+
+
+
+INSERT INTO emp VALUES (8888, 'ERAN', 'CLERK', 7788, TO_DATE('15-DEC-88', 'DD-MON-RR'), 1112, 111, 40);
+
+
+create table backup(
+	empno number(4) primary key,
+	ename varchar2(10),
+	job varchar2(9),
+	mgr number(4),
+	hiredate date,
+	sal number(7,2),
+	comm number(7,2),
+	deptno number(2));
+
+before deletion of any row save the values in a backup table.
+
+
+
+create or replace trigger backingup
+after delete on emp
+for each row
+BEGIN
+    insert into backup values(:old.empno,:old.ename,:old.job,:old.mgr,:old.hiredate,:old.sal,:old.comm,:old.deptno);
+    dbms_output.put_line('Delete and Backup Successful');
+END;
+
+
+
+
+
+delete from where emp where empno=8810;
+
+set serveroutput on;
+	
+
+drop trigger backingup;
+drop trigger 
